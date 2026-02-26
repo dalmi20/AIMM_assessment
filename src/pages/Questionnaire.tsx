@@ -24,6 +24,7 @@ import {
   FileText,
   AlertCircle,
   CheckCircle2,
+  Mail,
 } from 'lucide-react';
 import { generatePDF } from '@/lib/pdfExport';
 
@@ -54,6 +55,7 @@ export default function Questionnaire() {
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [navigationError, setNavigationError] = useState('');
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0); // Index de la question active dans la dimension
 
   // Reset sidebar on larger screens
   useEffect(() => {
@@ -108,6 +110,49 @@ export default function Questionnaire() {
     });
   };
 
+  const handleSendByEmail = () => {
+    // Générer un récapitulatif textuel des réponses
+    let emailBody = `Grille de Maturité - Collaboration Logistique\n\n`;
+    emailBody += `INFORMATIONS DU PARTICIPANT\n`;
+    emailBody += `Nom: ${userInfo.firstName} ${userInfo.lastName}\n`;
+    emailBody += `Entreprise: ${userInfo.company}\n`;
+    emailBody += `Rôle: ${roleLabel}\n\n`;
+    emailBody += `RÉSUMÉ DE COMPLÉTION\n`;
+    emailBody += `Complétude: ${progress}%\n`;
+    emailBody += `Questions répondues: ${answers.length}/${filteredQuestions.length}\n\n`;
+    emailBody += `RÉPONSES DÉTAILLÉES\n`;
+    emailBody += `${'='.repeat(50)}\n\n`;
+
+    // Grouper les réponses par dimension
+    const groupedByDimension = answers.reduce((acc, answer) => {
+      if (!acc[answer.dimension]) {
+        acc[answer.dimension] = [];
+      }
+      acc[answer.dimension].push(answer);
+      return acc;
+    }, {} as Record<string, typeof answers>);
+
+    // Ajouter les réponses groupées
+    Object.entries(groupedByDimension).forEach(([dimension, dimensionAnswers]) => {
+      emailBody += `DIMENSION: ${dimension}\n`;
+      emailBody += `${'-'.repeat(50)}\n`;
+      dimensionAnswers.forEach((answer) => {
+        emailBody += `\nIndicateur: ${answer.indicator}\n`;
+        emailBody += `Question: ${answer.question}\n`;
+        emailBody += `Réponse: ${answer.selectedText}\n`;
+      });
+      emailBody += `\n`;
+    });
+
+    // Créer le lien mailto
+    const subject = `Résultats Questionnaire - ${userInfo.firstName} ${userInfo.lastName} - ${new Date().toLocaleDateString('fr-FR')}`;
+    const encodedBody = encodeURIComponent(emailBody);
+    const mailtoLink = `mailto:kessaissiaferdaous@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
+
+    // Ouvrir le client de messagerie
+    window.location.href = mailtoLink;
+  };
+
   const handleReset = () => {
     reset();
     setQuestionnaireStarted(false);
@@ -123,6 +168,7 @@ export default function Questionnaire() {
 
   const handleNavigateToPrevious = () => {
     setNavigationError('');
+    setActiveQuestionIndex(0);
     setCurrentDimensionIndex(Math.max(0, currentDimensionIndex - 1));
   };
 
@@ -137,6 +183,7 @@ export default function Questionnaire() {
       return;
     }
     setNavigationError('');
+    setActiveQuestionIndex(0);
     setCurrentDimensionIndex(
       Math.min(dimensions.length - 1, currentDimensionIndex + 1)
     );
@@ -273,6 +320,14 @@ export default function Questionnaire() {
                   Exporter PDF
                 </Button>
                 <Button
+                  onClick={handleSendByEmail}
+                  disabled={!isQuestionnaireComplete}
+                  className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  <Mail className="w-4 h-4" />
+                  Envoyer par E-mail
+                </Button>
+                <Button
                   onClick={() => setShowResetDialog(true)}
                   variant="outline"
                   className="w-full gap-2"
@@ -333,6 +388,7 @@ export default function Questionnaire() {
                     question={question.question}
                     options={question.options}
                     selectedOption={answer?.selectedOption}
+                    isActive={index === activeQuestionIndex}
                     onSelectOption={(optionIndex) => {
                       answerQuestion(
                         question.dimension,
@@ -342,6 +398,12 @@ export default function Questionnaire() {
                         question.options[optionIndex]
                       );
                       setNavigationError('');
+                      // Avancer à la question suivante après 300ms
+                      setTimeout(() => {
+                        if (index < currentDimensionQuestions.length - 1) {
+                          setActiveQuestionIndex(index + 1);
+                        }
+                      }, 300);
                     }}
                   />
                 );
