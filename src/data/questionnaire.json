@@ -1,0 +1,964 @@
+[
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "Existence de SLA formalisés",
+    "question": "Existe-t-il un accord écrit entre les partenaires pour la logistique ?",
+    "options": [
+      "Non, aucun accord formel",
+      "Oui, mais accords verbaux uniquement",
+      "Oui, accords partiellement écrits",
+      "Oui, accords formalisés",
+      "Oui, accords formalisés et certifiés"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "Accords documentés et accessibles",
+    "question": "Ces accords sont-ils faciles à consulter ?",
+    "options": [
+      "Non ",
+      "difficiles d'accès",
+      "partiellement accessibles",
+      " clairement accessibles",
+      " plateforme centralisée accessible à tous"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "% services couverts par des SLA",
+    "question": "Quelle part des services logistiques est couverte par des SLA ?",
+    "options": [
+      "Aucun (0%)",
+      "Moins de la moitié (<50%)",
+      "Plus de la moitié (50-80%)",
+      "Presque tous (80-95%)",
+      "Tous (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "% SLA partagés et respectés",
+    "question": "Les engagements définis dans les accords sont-ils respectés ?",
+    "options": [
+      "Rarement (<25%)",
+      "Parfois (25-50%)",
+      "Souvent (50-80%)",
+      "Très souvent (80-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "Incidents liés à incompréhensions / mois",
+    "question": "Y a-t-il des problèmes liés à une mauvaise compréhension d'accord ?",
+    "options": [
+      "Très souvent (>5/mois)",
+      "Souvent (3-5/mois)",
+      "Parfois (1-2/mois)",
+      "Rarement (<1/mois)",
+      "Jamais (0)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Accord de partenariat",
+    "indicator": "Existence & fréquence de revue/mise à jour",
+    "question": "Les accords sont-ils revus et mis à jour ?",
+    "options": [
+      "Jamais révisés",
+      "Annuellement ou moins",
+      "De temps en temps (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "En continu avec processus agile"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "% collaborateurs déclarant valeurs claires/partagées",
+    "question": "Les méthodes de travail et les valeurs des partenaires sont-elles claires pour vous ?",
+    "options": [
+      "Pas claires (<25%)",
+      "Partiellement claires (25-50%)",
+      "Claires (50-75%)",
+      "Très claires (75-90%)",
+      "Très claires et partagées (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "Nb actions de promotion culture commune / an",
+    "question": "Des actions sont-elles menées pour améliorer la collaboration ?",
+    "options": [
+      "Aucune (0)",
+      "Occasionnellement (1-2/an)",
+      "Régulièrement (3-6/an)",
+      "Fréquemment (>6/an)",
+      "Intégrées au fonctionnement quotidien"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "Taux de conflits culturels signalés",
+    "question": "Rencontrez-vous des conflits liés aux différences de culture ?",
+    "options": [
+      "Très souvent (>5/trimestre)",
+      "Souvent (3-5/trimestre)",
+      "Parfois (1-2/trimestre)",
+      "Rarement (<1/trimestre)",
+      "Jamais (0)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Marché/technologie",
+    "indicator": "Fréquence de veille partagée",
+    "question": "Les partenaires échangent-ils régulièrement sur le marché ou la technologie ?",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Parfois (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "De manière organisée et continue"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Marché/technologie",
+    "indicator": "% décisions marché/tech avec participation du partenaire",
+    "question": "Le partenaire participe-t-il aux décisions importantes ?",
+    "options": [
+      "Pas du tout (0%)",
+      "Occasionnellement (25%)",
+      "Souvent (50%)",
+      "Très souvent (75%)",
+      "Toujours - décisions communes (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Marché/technologie",
+    "indicator": "Nb décisions/projets issus de la veille conjointe / an",
+    "question": "Ces échanges ont-ils déjà mené à des décisions ou projets communs ?",
+    "options": [
+      "Aucun (0)",
+      "Non, aucune concrétisation",
+      "Oui, rarement (1-2/an)",
+      "Oui, plusieurs fois (3-5/an)",
+      "Oui, de façon systématique (>5/an)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Marché/technologie",
+    "indicator": "Existence d'outils partagés de veille",
+    "question": "Existe-t-il des outils partagés pour suivre le marché ou la technologie ?",
+    "options": [
+      "Aucun outil",
+      "Outils individuels non partagés",
+      "Peu utilisés",
+      "Utilisés par les deux partenaires",
+      "Plateforme commune intégrée"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Coûts / Finances",
+    "indicator": "% projets collaboratifs avec coûts partagés explicitement",
+    "question": "Les coûts des projets communs sont-ils clairement définis et partagés ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Souvent (50%)",
+      "Très souvent (75%)",
+      "Toujours (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Coûts / Finances",
+    "indicator": "Règles documentées de répartition coûts/gains",
+    "question": "Existe-t-il des règles écrites pour partager les coûts et les gains ?",
+    "options": [
+      "Non, aucune règle",
+      "Règles verbales uniquement",
+      "Oui, mais peu claires",
+      "Oui, claires",
+      "Oui, claires, formalisées et régulièrement mises à jour"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Coûts / Finances",
+    "indicator": "Nb désaccords financiers / an",
+    "question": "Y a-t-il des désaccords financiers entre partenaires ?",
+    "options": [
+      "Très souvent (>6/an)",
+      "Souvent (4-6/an)",
+      "Parfois (2-3/an)",
+      "Rarement (1/an)",
+      "Jamais (0)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Coûts / Finances",
+    "indicator": "Fréquence de revue conjointe budgets/coûts",
+    "question": "Les budgets et coûts sont-ils revus ensemble ?",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Occasionnellement (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "En suivi continu (mensuel)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": " Rôles et responsabilités",
+    "indicator": "% rôles formalisés (RACI/organigramme)",
+    "question": "Les rôles entre votre entreprise et le partenaire sont-ils clairement définis par écrit ?",
+    "options": [
+      "Non formalisés (0%)",
+      "Partiellement formalisés (25%)",
+      "Oui, partiellement (50%)",
+      "Oui, clairement (75%)",
+      "Oui, totalement formalisés et à jour (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": " Rôles et responsabilités",
+    "indicator": "% collaborateurs sachant « qui fait quoi » chez le partenaire",
+    "question": "Les équipes savent-elles clairement qui fait quoi chez le partenaire ?",
+    "options": [
+      "Pas du tout (<25%)",
+      "Partiellement (25-50%)",
+      "Majoritairement (50-75%)",
+      "Largement (75-90%)",
+      "Totalement (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": " Rôles et responsabilités",
+    "indicator": "Nb chevauchements / zones grises / an",
+    "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités ?",
+    "options": [
+      "Très souvent (>10/an)",
+      "Souvent (6-10/an)",
+      "Parfois (3-5/an)",
+      "Rarement (1-2/an)",
+      "Jamais (0)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": " Rôles et responsabilités",
+    "indicator": "Mise à jour formelle des responsabilités",
+    "question": "Les rôles et responsabilités sont-ils mis à jour officiellement ?",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Occasionnellement (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "À chaque changement important (proactif)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Compétences",
+    "indicator": "% compétences clés identifiées / cartographiées",
+    "question": "Les compétences clés nécessaires à la collaboration sont-elles identifiées ?",
+    "options": [
+      "Non identifiées (0%)",
+      "Partiellement (25%)",
+      "Majoritairement identifiées (50%)",
+      "Oui, identifiées (75%)",
+      "Oui, totalement cartographiées et actualisées (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Compétences",
+    "indicator": "Nb formations conjointes / an",
+    "question": "Des formations communes avec le partenaire sont-elles organisées ?",
+    "options": [
+      "Aucune (0)",
+      "Rarement (1/an)",
+      "Occasionnellement (2-3/an)",
+      "Régulièrement (4-6/an)",
+      "Intégrées aux projets (>6/an)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Compétences",
+    "indicator": "Taux de couverture des compétences critiques",
+    "question": "Les compétences critiques sont-elles disponibles pour les projets communs ?",
+    "options": [
+      "Insuffisantes (<50%)",
+      "Partiellement couvertes (50-70%)",
+      "Majoritairement couvertes (70-85%)",
+      "Bien couvertes (85-95%)",
+      "Totalement couvertes (>95%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Compétences",
+    "indicator": "Nb plans de développement des compétences",
+    "question": "Existe-t-il des plans pour développer les compétences ?",
+    "options": [
+      "Aucun (0)",
+      "Informels uniquement",
+      "Quelques plans formels",
+      "Plans formels structurés",
+      "Plans formels intégrés avec suivi continu"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Engagement",
+    "indicator": "Taux de participation aux réunions / ateliers",
+    "question": "Les partenaires participent-ils activement aux réunions et ateliers ?",
+    "options": [
+      "Rarement (<50%)",
+      "Parfois (50-70%)",
+      "Souvent (70-85%)",
+      "Très souvent (85-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Engagement",
+    "indicator": "% actions conjointes réalisées dans les délais",
+    "question": "Les actions menées ensemble sont-elles réalisées dans les délais ?",
+    "options": [
+      "Rarement (<50%)",
+      "Parfois (50-70%)",
+      "Souvent (70-85%)",
+      "Très souvent (85-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Engagement",
+    "indicator": "Satisfaction des partenaires sur l'implication",
+    "question": "Êtes-vous satisfait de l'implication du partenaire ?",
+    "options": [
+      "Pas satisfait (<3/10)",
+      "Peu satisfait (3-5/10)",
+      "Satisfait (5-7/10)",
+      "Très satisfait (7-9/10)",
+      "Excellente satisfaction (>9/10)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Engagement",
+    "indicator": "Stabilité des équipes dédiées (turnover)",
+    "question": "Les équipes dédiées à la collaboration sont-elles stables ?",
+    "options": [
+      "Très instables (>40% turnover)",
+      "Instables (25-40%)",
+      "Peu stables (15-25%)",
+      "Plutôt stables (5-15%)",
+      "Très stables (<5%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Définition des processus métiers",
+    "indicator": "Existence d'un référentiel partagé des processus",
+    "question": "Existe-t-il un document commun décrivant les processus ?",
+    "options": [
+      "Non, aucun référentiel",
+      "Processus individuels uniquement",
+      "Oui, mais incomplet",
+      "Oui, clair",
+      "Oui, clair, complet et à jour"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Définition des processus métiers",
+    "indicator": "% points de coordination / activités clés identifiées",
+    "question": "Les étapes où les partenaires travaillent ensemble sont-elles identifiées ?",
+    "options": [
+      "Non identifiés (0%)",
+      "Identifiés de manière informelle (25%)",
+      "Partiellement identifiés (50%)",
+      "Identifiés clairement (75%)",
+      "Totalement identifiés et documentés (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Définition des processus métiers",
+    "indicator": "% points de coordination représentés clairement",
+    "question": "Les processus de logistique sont-ils représentés clairement ?",
+    "options": [
+      "Pas du tout (0%)",
+      "Partiellement (25%)",
+      "Majoritairement (50%)",
+      "Largement (75%)",
+      "Totalement avec outils standards (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Définition des processus métiers",
+    "indicator": "% points de coordination avec entrées/sorties définies",
+    "question": "Les informations à échanger sont-elles définies ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Toujours (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Définition des processus métiers",
+    "indicator": "Délai de mise à jour après changement",
+    "question": "Les processus sont-ils mis à jour rapidement ?",
+    "options": [
+      "Très tard (>3 mois)",
+      "Avec retard (1-3 mois)",
+      "Délai raisonnable (2-4 semaines)",
+      "Rapidement (1-2 semaines)",
+      "Immédiatement (<1 semaine)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Exécution des processus métiers",
+    "indicator": "% d'activités exécutées selon le planning convenu",
+    "question": "Les activités sont-elles réalisées selon le planning prévu ?",
+    "options": [
+      "Rarement (<50%)",
+      "Parfois (50-70%)",
+      "Souvent (70-85%)",
+      "Très souvent (85-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Exécution des processus métiers",
+    "indicator": "Fréquence des désynchronisations par période",
+    "question": "Y a-t-il des problèmes de coordination ou des retards ?",
+    "options": [
+      "Très souvent (>10/mois)",
+      "Souvent (5-10/mois)",
+      "Parfois (2-4/mois)",
+      "Rarement (1/mois)",
+      "Jamais (0)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Exécution des processus métiers",
+    "indicator": "Fluidité des interactions",
+    "question": "Faut-il beaucoup d'allers-retours pour finaliser une tâche commune ?",
+    "options": [
+      "Beaucoup (>5 itérations)",
+      "Plusieurs (3-5 itérations)",
+      "Quelques-uns (2-3 itérations)",
+      "Peu (1 itération)",
+      "Aucun (flux continu)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Exécution des processus métiers",
+    "indicator": "Temps de réaction aux écarts",
+    "question": "En cas de problème, la correction est-elle rapide ?",
+    "options": [
+      "Très lent (>1 semaine)",
+      "Lent (3-7 jours)",
+      "Acceptable (1-3 jours)",
+      "Rapide (<24h)",
+      "Très rapide (<4h)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "Nombre de KPIs communs définis",
+    "question": "Existe-t-il des indicateurs communs pour suivre les processus ?",
+    "options": [
+      "Aucun (0)",
+      "Peu (1-3)",
+      "Quelques-uns (4-7)",
+      "Plusieurs (8-12)",
+      "Système complet et adapté (>12)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "% points de coordination couverts par au moins un indicateur",
+    "question": "Les échanges clés sont-ils suivis avec des indicateurs ?",
+    "options": [
+      "Pas du tout (0%)",
+      "Partiellement (25%)",
+      "Majoritairement (50%)",
+      "Largement (75%)",
+      "Totalement (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "% KPI suivis",
+    "question": "Les indicateurs sont-ils mesurés et mis à jour régulièrement ?",
+    "options": [
+      "Jamais (0%)",
+      "Parfois (25%)",
+      "Régulièrement (50%)",
+      "Très régulièrement (75%)",
+      "En continu avec automatisation (100%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "Fréquence / taux de revues conjointes",
+    "question": "Les performances sont-elles revues ensemble avec le partenaire ?",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Occasionnellement (semestriellement)",
+      "Régulièrement (mensuellement)",
+      "De façon structurée (hebdomadaire)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "Capacité d'anticipation",
+    "question": "Les problèmes sont-ils détectés avant d'avoir un impact ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Presque toujours (>90%)"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Pilotage des processus métiers",
+    "indicator": "Présence d'outils / méthodes prédictives",
+    "question": "Utilisez-vous des outils pour anticiper les dérives ?",
+    "options": [
+      "Aucun outil",
+      "Outils basiques",
+      "Peu utilisés",
+      "Utilisés régulièrement",
+      "Intégrés au pilotage avec IA/ML"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet"
+  },
+  {
+    "dimension": "Transparence des processus métiers",
+    "indicator": "Taux de visibilité partagée",
+    "question": "Les partenaires ont-ils accès à l'avancement des activités communes ?",
+    "options": [
+      "Très peu (0-25%)",
+      "Partiellement (25-50%)",
+      "Largement (50-75%)",
+      "Très largement (75-90%)",
+      "Totalement (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Transparence des processus métiers",
+    "indicator": "Couverture des décisions clés",
+    "question": "Les décisions importantes sont-elles documentées et partagées ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Souvent (50%)",
+      "Très souvent (75%)",
+      "Toujours (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Transparence des processus métiers",
+    "indicator": "Délai de partage",
+    "question": "Les informations sont-elles partagées rapidement ?",
+    "options": [
+      "Très tard (>1 semaine)",
+      "Avec retard (3-7 jours)",
+      "Acceptable (1-3 jours)",
+      "Rapidement (<24h)",
+      "Immédiatement (temps réel)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Transparence des processus métiers",
+    "indicator": "Profondeur de traçabilité",
+    "question": "Est-il facile de retrouver l'historique et les causes d'un problème ?",
+    "options": [
+      "Très difficile (aucune trace)",
+      "Difficile (traces partielles)",
+      "Possible (avec effort)",
+      "Facile (système structuré)",
+      "Très facile (traçabilité complète automatisée)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "GESTION DES INCIDENTS ET RISQUES",
+    "indicator": "Existence de règles de gestion d'incident conjointe",
+    "question": "Existe-t-il une procédure commune pour gérer les incidents ?",
+    "options": [
+      "Non, aucune procédure",
+      "Procédures individuelles uniquement",
+      "Oui, informelle",
+      "Oui, formalisée",
+      "Oui, formalisée, testée et connue de tous"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "GESTION DES INCIDENTS ET RISQUES",
+    "indicator": "% incidents gérés conjointement selon procédure",
+    "question": "Les incidents sont-ils gérés conjointement ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Toujours (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "GESTION DES INCIDENTS ET RISQUES",
+    "indicator": "Temps de réaction aux incidents",
+    "question": "La première réponse à un incident est-elle rapide ?",
+    "options": [
+      "Très lent (>24h)",
+      "Lent (12-24h)",
+      "Acceptable (4-12h)",
+      "Rapide (1-4h)",
+      "Très rapide (<1h)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "GESTION DES INCIDENTS ET RISQUES",
+    "indicator": "Taux d'anticipation des risques",
+    "question": "Les risques sont-ils identifiés avant qu'ils ne se produisent ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Presque toujours (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "GESTION DES INCIDENTS ET RISQUES",
+    "indicator": "Taux d'amélioration post-incident",
+    "question": "Les incidents servent-ils à améliorer les processus ?",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Systématiquement (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Donnée de processus",
+    "indicator": "Mode de partage",
+    "question": "Comment partagez-vous les données de processus ?",
+    "options": [
+      "Informel (emails, verbal)",
+      "Partage manuel structuré (fichiers)",
+      "Partage automatique (intégrations basiques)",
+      "Automatique avancé (API, EDI)",
+      "Temps réel (systèmes intégrés)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Donnée de processus",
+    "indicator": "Taux de complétude des données",
+    "question": "Les données de processus partagées sont-elles complètes ?",
+    "options": [
+      "Rarement complètes (<50%)",
+      "Parfois complètes (50-70%)",
+      "Souvent complètes (70-85%)",
+      "Très souvent complètes (85-95%)",
+      "Toujours complètes (>95%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Donnée de processus",
+    "indicator": "Délai de propagation",
+    "question": "Les données sont-elles disponibles rapidement chez le partenaire ?",
+    "options": [
+      "Plusieurs jours (>3 jours)",
+      "Après un certain délai (1-3 jours)",
+      "Rapidement (<24h)",
+      "Très rapidement (<4h)",
+      "En temps réel (<15 min)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Donnée de processus",
+    "indicator": "Formats d'échange convenus",
+    "question": "Avez-vous défini des formats communs pour échanger les données ?",
+    "options": [
+      "Non, aucun standard",
+      "Standards définis mais peu appliqués",
+      "Oui, peu appliqués (50%)",
+      "Oui, souvent appliqués (75%)",
+      "Oui, toujours appliqués (100%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Donnée de processus",
+    "indicator": "Taux d'erreurs de synchronisation",
+    "question": "Y a-t-il des erreurs ou incohérences dans les données échangées ?",
+    "options": [
+      "Très souvent (>10%)",
+      "Souvent (5-10%)",
+      "Parfois (2-5%)",
+      "Rarement (0.5-2%)",
+      "Jamais (<0.5%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Taux de partage des données produit",
+    "question": "Les données produit sont-elles accessibles au partenaire ?",
+    "options": [
+      "Très peu (0-25%)",
+      "Partiellement (25-50%)",
+      "Largement (50-75%)",
+      "Très largement (75-90%)",
+      "Totalement (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Mode d'accès",
+    "question": "Comment le partenaire accède-t-il aux données produit ?",
+    "options": [
+      "Sur demande uniquement",
+      "Accès ponctuel",
+      "Accès régulier",
+      "Accès permanent",
+      "Synchronisation automatique bidirectionnelle"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Existence d'une source commune",
+    "question": "Les données produit sont-elles regroupées au même endroit ?",
+    "options": [
+      "Non, sources multiples",
+      "Sources disparates",
+      "Plusieurs sources principales",
+      "Une source principale",
+      "Une source unique (PLM/PDM partagé)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Taux d'unicité",
+    "question": "Les données produit sont-elles cohérentes et sans doublons ?",
+    "options": [
+      "Rarement (<50%)",
+      "Parfois (50-70%)",
+      "Souvent (70-85%)",
+      "Très souvent (85-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Taux de cohérence inter-partenaires",
+    "question": "Les partenaires travaillent-ils avec les mêmes données produit ?",
+    "options": [
+      "Très rarement (<50%)",
+      "Parfois (50-70%)",
+      "Souvent (70-85%)",
+      "La plupart du temps (85-95%)",
+      "Toujours (>95%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Données de produits",
+    "indicator": "Délai de diffusion des modifications",
+    "question": "Les modifications des données produit sont-elles partagées rapidement ?",
+    "options": [
+      "Très lentement (>1 semaine)",
+      "Lentement (3-7 jours)",
+      "Avec retard (1-3 jours)",
+      "Rapidement (<24h)",
+      "En temps réel (<1h)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Ingénierie des connaissances",
+    "indicator": "Taux de formalisation",
+    "question": "Les connaissances clés pour la collaboration sont-elles documentées ?\n(Par exemple : un document expliquant comment exécuter une tâche étape par étape.)",
+    "options": [
+      "Non documentées (0-25%)",
+      "Partiellement (25-50%)",
+      "Majoritairement (50-75%)",
+      "Largement (75-90%)",
+      "Totalement (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Ingénierie des connaissances",
+    "indicator": "Niveau de structuration",
+    "question": "Comment sont organisées ces connaissances ?\n(par exemple : des dossiers classés par activité ou par processus.)",
+    "options": [
+      "Pas organisées (documents dispersés)",
+      "Listes simples",
+      "Classement par catégories",
+      "Structure claire (taxonomie)",
+      "Modèle formel (ontologie, référentiel)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Ingénierie des connaissances",
+    "indicator": "Existence d'un langage commun",
+    "question": "Existe-t-il un vocabulaire ou glossaire commun entre partenaires ?\n(Par exemple: un guide commun décrivant les termes et méthodes de travail.)",
+    "options": [
+      "Non, vocabulaires différents",
+      "Partiellement (quelques termes communs)",
+      "Glossaire partiel",
+      "Oui, glossaire complet",
+      "Oui, ontologie partagée utilisée par tous"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Ingénierie des connaissances",
+    "indicator": "Taux de réutilisation",
+    "question": "Les connaissances documentées sont-elles réutilisées ?\n(par exemple: un guide déjà existant est repris sans tout refaire.)",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Très souvent (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Ingénierie des connaissances",
+    "indicator": "Utilisation pour aide à la décision",
+    "question": "Les connaissances sont-elles utilisées pour aider à la prise de décision ?\n(par exemple: une règle claire permet de choisir rapidement la bonne action.)",
+    "options": [
+      "Jamais",
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Systématiquement"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Gestion des connaissances",
+    "indicator": "Taux de perte de savoir (% connaissances critiques perdues)",
+    "question": "Perdez-vous des connaissances importantes (départs, turnover) ?\n(par exemple: un expert part, et personne ne sait comment fonctionne une étape clé du processus)",
+    "options": [
+      "Très souvent (>30% pertes)",
+      "Souvent (15-30%)",
+      "Parfois (5-15%)",
+      "Rarement (1-5%)",
+      "Jamais (<1%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Gestion des connaissances",
+    "indicator": "Existence d’espaces de stockage (plateformes disponibles)",
+    "question": "Existe-t-il un espace commun pour stocker les connaissances ?\n(par exemple: un dossier partagé)",
+    "options": [
+      "Aucun système",
+      "Stockage local dispersé",
+      "Peu utilisé (fichiers partagés basiques)",
+      "Utilisé régulièrement (GED, wiki)",
+      "Plateforme centrale collaborative (KMS)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Gestion des connaissances",
+    "indicator": "Taux d’alimentation (fréquence d’ajout)",
+    "question": "De nouvelles connaissances sont-elles ajoutées régulièrement ?\n(par exemple: après un problème, une nouvelle procédure est documentée)",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Rarement (semestriellement)",
+      "Régulièrement (mensuellement)",
+      "Très régulièrement (hebdomadairement)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Gestion des connaissances",
+    "indicator": "Indice d’apprentissage continu (nb améliorations issues)",
+    "question": "La capitalisation des connaissances permet-elle des améliorations concrètes ?\n(par exemple: moins d’erreurs, moins de retards, meilleure coordination entre équipes)",
+    "options": [
+      "Jamais (0 amélioration/an)",
+      "Rarement (1-2/an)",
+      "Parfois (3-5/an)",
+      "Souvent (6-10/an)",
+      "Très souvent (>10/an)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  },
+  {
+    "dimension": "Gestion des connaissances",
+    "indicator": "Intégration au quotidien (% décisions/actions utilisant le savoir)",
+    "question": "Les connaissances capitalisées sont-elles utilisées au quotidien ?\n(par exemple: les opérateurs consultent les procédures avant d’exécuter une tâche.)",
+    "options": [
+      "Jamais (0%)",
+      "Rarement (25%)",
+      "Parfois (50%)",
+      "Souvent (75%)",
+      "Systématiquement (>90%)"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration"
+  }
+]
