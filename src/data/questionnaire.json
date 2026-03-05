@@ -313,11 +313,11 @@
     "indicator": "Satisfaction des partenaires sur l'implication",
     "question": "Êtes-vous satisfait de l'implication du partenaire ?",
     "options": [
-      "Pas satisfait (<3/10)",
-      "Peu satisfait (3-5/10)",
-      "Satisfait (5-7/10)",
-      "Très satisfait (7-9/10)",
-      "Excellente satisfaction (>9/10)"
+      "Pas satisfait",
+      "Peu satisfait",
+      "Satisfait",
+      "Très satisfait",
+      "Excellente satisfaction"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -326,50 +326,37 @@
     "indicator": "Stabilité des équipes dédiées (turnover)",
     "question": "Les équipes dédiées à la collaboration sont-elles stables ?",
     "options": [
-      "Très instables (>40% turnover)",
-      "Instables (25-40%)",
-      "Peu stables (15-25%)",
-      "Plutôt stables (5-15%)",
-      "Très stables (<5%)"
+      "Très instables",
+      "Instables",
+      "Peu stables",
+      "Plutôt stables",
+      "Très stables"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
     "dimension": "Définition des processus métiers",
     "indicator": "Existence d'un référentiel partagé des processus",
-    "question": "Existe-t-il un document commun décrivant les processus ?",
+    "question": "Existe-t-il un document commun décrivant le processus de logistique collaborative ?",
     "options": [
       "Non, aucun référentiel",
       "Processus individuels uniquement",
       "Oui, mais incomplet",
-      "Oui, clair",
-      "Oui, clair, complet et à jour"
+      "Oui, complet",
+      "Oui, complet et mis à jour"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
   {
     "dimension": "Définition des processus métiers",
     "indicator": "% points de coordination / activités clés identifiées",
-    "question": "Les étapes où les partenaires travaillent ensemble sont-elles identifiées ?",
+    "question": "Les étapes (les points de coordination) où les deux entreprises travaillent ensemble sont-elles identifiées ?",
     "options": [
-      "Non identifiés (0%)",
-      "Identifiés de manière informelle (25%)",
+      "Non identifiés",
+      "Identifiés de manière informelle",
       "Partiellement identifiés (50%)",
       "Identifiés clairement (75%)",
-      "Totalement identifiés et documentés (100%)"
-    ],
-    "role": "Tous les acteurs impliqués dans la collaboration"
-  },
-  {
-    "dimension": "Définition des processus métiers",
-    "indicator": "% points de coordination représentés clairement",
-    "question": "Les processus de logistique sont-ils représentés clairement ?",
-    "options": [
-      "Pas du tout (0%)",
-      "Partiellement (25%)",
-      "Majoritairement (50%)",
-      "Largement (75%)",
-      "Totalement avec outils standards (100%)"
+      "Totalement identifiés et documentés"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -378,11 +365,11 @@
     "indicator": "% points de coordination avec entrées/sorties définies",
     "question": "Les informations à échanger sont-elles définies ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Parfois (50%)",
-      "Souvent (75%)",
-      "Toujours (100%)"
+      "Pas du tout définies",
+      "Rarement définies",
+      "Partiellement définies",
+      "Majoritairement définies",
+      "Totalement définies"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -404,11 +391,11 @@
     "indicator": "% d'activités exécutées selon le planning convenu",
     "question": "Les activités sont-elles réalisées selon le planning prévu ?",
     "options": [
-      "Rarement (<50%)",
-      "Parfois (50-70%)",
-      "Souvent (70-85%)",
-      "Très souvent (85-95%)",
-      "Toujours (>95%)"
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Très souvent",
+      "Toujours"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -417,11 +404,11 @@
     "indicator": "Fréquence des désynchronisations par période",
     "question": "Y a-t-il des problèmes de coordination ou des retards ?",
     "options": [
-      "Très souvent (>10/mois)",
-      "Souvent (5-10/mois)",
-      "Parfois (2-4/mois)",
-      "Rarement (1/mois)",
-      "Jamais (0)"
+      "Très souvent (>10 fois/an)",
+      "Souvent (5-10 fois/mois)",
+      "Parfois (2-4 fois/mois)",
+      "Rarement (1 fois/mois)",
+      "Jamais"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -454,9 +441,9 @@
   {
     "dimension": "Pilotage des processus métiers",
     "indicator": "Nombre de KPIs communs définis",
-    "question": "Existe-t-il des indicateurs communs pour suivre les processus ?",
+    "question": "Existe-t-il des indicateurs communs pour suivre le processus de la logistique ?",
     "options": [
-      "Aucun (0)",
+      "Aucun ",
       "Peu (1-3)",
       "Quelques-uns (4-7)",
       "Plusieurs (8-12)",
@@ -469,11 +456,11 @@
     "indicator": "% points de coordination couverts par au moins un indicateur",
     "question": "Les échanges clés sont-ils suivis avec des indicateurs ?",
     "options": [
-      "Pas du tout (0%)",
-      "Partiellement (25%)",
-      "Majoritairement (50%)",
-      "Largement (75%)",
-      "Totalement (100%)"
+      "Pas du tout ",
+      "Partiellement",
+      "Majoritairement",
+      "Largement",
+      "Totalement"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -482,18 +469,18 @@
     "indicator": "% KPI suivis",
     "question": "Les indicateurs sont-ils mesurés et mis à jour régulièrement ?",
     "options": [
-      "Jamais (0%)",
-      "Parfois (25%)",
-      "Régulièrement (50%)",
-      "Très régulièrement (75%)",
-      "En continu avec automatisation (100%)"
+      "Jamais",
+      "Parfois (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "Très régulièrement (mensuellement)",
+      "En continu"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
     "dimension": "Pilotage des processus métiers",
     "indicator": "Fréquence / taux de revues conjointes",
-    "question": "Les performances sont-elles revues ensemble avec le partenaire ?",
+    "question": "Le performance de le processus est-elle revue ensemble avec le partenaire ?",
     "options": [
       "Jamais",
       "Annuellement",
@@ -508,11 +495,11 @@
     "indicator": "Capacité d'anticipation",
     "question": "Les problèmes sont-ils détectés avant d'avoir un impact ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Parfois (50%)",
-      "Souvent (75%)",
-      "Presque toujours (>90%)"
+      "Jamais",
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Presque toujours"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -523,8 +510,8 @@
     "options": [
       "Aucun outil",
       "Outils basiques",
-      "Peu utilisés",
-      "Utilisés régulièrement",
+      "",
+      "",
       "Intégrés au pilotage avec IA/ML"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
@@ -532,13 +519,13 @@
   {
     "dimension": "Transparence des processus métiers",
     "indicator": "Taux de visibilité partagée",
-    "question": "Les partenaires ont-ils accès à l'avancement des activités communes ?",
+    "question": "Est-ce que vous avez accès à l'avancement des activités communes ?",
     "options": [
-      "Très peu (0-25%)",
-      "Partiellement (25-50%)",
-      "Largement (50-75%)",
-      "Très largement (75-90%)",
-      "Totalement (>90%)"
+      "Très peu",
+      "Partiellement",
+      "Largement",
+      "Très largement",
+      "Totalement"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -547,11 +534,11 @@
     "indicator": "Couverture des décisions clés",
     "question": "Les décisions importantes sont-elles documentées et partagées ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Souvent (50%)",
-      "Très souvent (75%)",
-      "Toujours (100%)"
+      "Jamais",
+      "Rarement",
+      "Souvent",
+      "Très souvent",
+      "Toujours"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -599,11 +586,11 @@
     "indicator": "% incidents gérés conjointement selon procédure",
     "question": "Les incidents sont-ils gérés conjointement ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Parfois (50%)",
-      "Souvent (75%)",
-      "Toujours (100%)"
+      "Jamais – Les incidents sont gérés individuellement par chaque organisation.",
+      "Rarement – Une gestion conjointe existe mais reste exceptionnelle.",
+      "Parfois – Certains incidents sont traités conjointement.",
+      "Souvent – La majorité des incidents est gérée conjointement.",
+      "Toujours – Tous les incidents sont systématiquement gérés conjointement."
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -625,11 +612,11 @@
     "indicator": "Taux d'anticipation des risques",
     "question": "Les risques sont-ils identifiés avant qu'ils ne se produisent ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Parfois (50%)",
-      "Souvent (75%)",
-      "Presque toujours (>90%)"
+      "Jamais",
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Presque toujours"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -638,18 +625,18 @@
     "indicator": "Taux d'amélioration post-incident",
     "question": "Les incidents servent-ils à améliorer les processus ?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Parfois (50%)",
-      "Souvent (75%)",
-      "Systématiquement (100%)"
+      "Jamais",
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Systématiquement"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
   {
     "dimension": "Donnée de processus",
     "indicator": "Mode de partage",
-    "question": "Comment partagez-vous les données de processus ?",
+    "question": "Comment partagez-vous les données nécessaires de processus logiques ?",
     "options": [
       "Informel (emails, verbal)",
       "Partage manuel structuré (fichiers)",
