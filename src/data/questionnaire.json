@@ -1,32 +1,31 @@
 [
   {
-    "dimension": "Accord de partenariat",
-    "indicator": "Existence de SLA formalisés",
-    "question": "Existe-t-il un accord écrit entre les partenaires pour la logistique ?",
+    "dimension": "Contrat de partenariat",
+    "indicator": "Existence d'une contrat formalisé",
+    "question": "Existe-t-il une contrat(des accords) écrite entre les deux entreprises qui definit les responsabilités de chacune d'elle dans le processus de la  logistique ?",
     "options": [
-      "Non, aucun accord formel",
+      "Non, aucun accord",
       "Oui, mais accords verbaux uniquement",
       "Oui, accords partiellement écrits",
-      "Oui, accords formalisés",
-      "Oui, accords formalisés et certifiés"
+      "Oui, accords formalisés"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
-    "dimension": "Accord de partenariat",
+    "dimension": "Contrat de partenariat",
     "indicator": "Accords documentés et accessibles",
     "question": "Ces accords sont-ils faciles à consulter ?",
     "options": [
       "Non ",
       "difficiles d'accès",
       "partiellement accessibles",
-      " clairement accessibles",
+      "clairement accessibles",
       " plateforme centralisée accessible à tous"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
-    "dimension": "Accord de partenariat",
+    "dimension": "Contrat de partenariat",
     "indicator": "% services couverts par des SLA",
     "question": "Quelle part des services logistiques est couverte par des SLA ?",
     "options": [
@@ -39,7 +38,7 @@
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
-    "dimension": "Accord de partenariat",
+    "dimension": "Contrat de partenariat",
     "indicator": "% SLA partagés et respectés",
     "question": "Les engagements définis dans les accords sont-ils respectés ?",
     "options": [
@@ -52,7 +51,7 @@
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
-    "dimension": "Accord de partenariat",
+    "dimension": "Contrat de partenariat",
     "indicator": "Incidents liés à incompréhensions / mois",
     "question": "Y a-t-il des problèmes liés à une mauvaise compréhension d'accord ?",
     "options": [
@@ -65,7 +64,7 @@
     "role": "Stratégique: un responsable de service, chef de projet"
   },
   {
-    "dimension": "Accord de partenariat",
+    "dimension": "Contrat de partenariat",
     "indicator": "Existence & fréquence de revue/mise à jour",
     "question": "Les accords sont-ils revus et mis à jour ?",
     "options": [
@@ -171,39 +170,26 @@
   {
     "dimension": "Coûts / Finances",
     "indicator": "% projets collaboratifs avec coûts partagés explicitement",
-    "question": "Les coûts des projets communs sont-ils clairement définis et partagés ?",
+    "question": "Les coûts des projets communs sont-ils clairement définis et partagés?",
     "options": [
-      "Jamais (0%)",
-      "Rarement (25%)",
-      "Souvent (50%)",
-      "Très souvent (75%)",
-      "Toujours (100%)"
+      "Jamais",
+      "Rarement",
+      "Souvent",
+      "Très souvent",
+      "Toujours"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
-  {
-    "dimension": "Coûts / Finances",
-    "indicator": "Règles documentées de répartition coûts/gains",
-    "question": "Existe-t-il des règles écrites pour partager les coûts et les gains ?",
-    "options": [
-      "Non, aucune règle",
-      "Règles verbales uniquement",
-      "Oui, mais peu claires",
-      "Oui, claires",
-      "Oui, claires, formalisées et régulièrement mises à jour"
-    ],
-    "role": "Stratégique: un responsable de service, chef de projet"
-  },
-  {
+{
     "dimension": "Coûts / Finances",
     "indicator": "Nb désaccords financiers / an",
     "question": "Y a-t-il des désaccords financiers entre partenaires ?",
     "options": [
-      "Très souvent (>6/an)",
-      "Souvent (4-6/an)",
-      "Parfois (2-3/an)",
-      "Rarement (1/an)",
-      "Jamais (0)"
+      "Très souvent (>6 fois/an)",
+      "Souvent (4-6 fois/an)",
+      "Parfois (2-3 fois/an)",
+      "Rarement (1 fois/an)",
+      "Jamais"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -225,11 +211,10 @@
     "indicator": "% rôles formalisés (RACI/organigramme)",
     "question": "Les rôles entre votre entreprise et le partenaire sont-ils clairement définis par écrit ?",
     "options": [
-      "Non formalisés (0%)",
-      "Partiellement formalisés (25%)",
-      "Oui, partiellement (50%)",
-      "Oui, clairement (75%)",
-      "Oui, totalement formalisés et à jour (100%)"
+      "Non formalisés ",
+      "Oui, partiellement",
+      "Oui, clairement",
+      "Oui, totalement formalisés et à jour"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -238,24 +223,23 @@
     "indicator": "% collaborateurs sachant « qui fait quoi » chez le partenaire",
     "question": "Les équipes savent-elles clairement qui fait quoi chez le partenaire ?",
     "options": [
-      "Pas du tout (<25%)",
-      "Partiellement (25-50%)",
-      "Majoritairement (50-75%)",
-      "Largement (75-90%)",
-      "Totalement (>90%)"
+      "Pas du tout",
+      "Partiellement",
+      "Largement",
+      "Totalement"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
   {
     "dimension": " Rôles et responsabilités",
     "indicator": "Nb chevauchements / zones grises / an",
-    "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités ?",
+    "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités entre les deux entreprises ?",
     "options": [
-      "Très souvent (>10/an)",
-      "Souvent (6-10/an)",
-      "Parfois (3-5/an)",
-      "Rarement (1-2/an)",
-      "Jamais (0)"
+      "Très souvent (>10 fois/an)",
+      "Souvent (6-10 fois/an)",
+      "Parfois (3-5 fois/an)",
+      "Rarement (1-2 fois/an)",
+      "Jamais"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration"
   },
@@ -277,11 +261,11 @@
     "indicator": "% compétences clés identifiées / cartographiées",
     "question": "Les compétences clés nécessaires à la collaboration sont-elles identifiées ?",
     "options": [
-      "Non identifiées (0%)",
-      "Partiellement (25%)",
-      "Majoritairement identifiées (50%)",
-      "Oui, identifiées (75%)",
-      "Oui, totalement cartographiées et actualisées (100%)"
+      "Non identifiées",
+      "Partiellement",
+      "Oui, identifiées",
+      "Oui, identifiées et cartographiées",
+      "Oui, cartographiées et mises à jour régulièrement"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -290,37 +274,11 @@
     "indicator": "Nb formations conjointes / an",
     "question": "Des formations communes avec le partenaire sont-elles organisées ?",
     "options": [
-      "Aucune (0)",
-      "Rarement (1/an)",
-      "Occasionnellement (2-3/an)",
-      "Régulièrement (4-6/an)",
-      "Intégrées aux projets (>6/an)"
-    ],
-    "role": "Stratégique: un responsable de service, chef de projet"
-  },
-  {
-    "dimension": "Compétences",
-    "indicator": "Taux de couverture des compétences critiques",
-    "question": "Les compétences critiques sont-elles disponibles pour les projets communs ?",
-    "options": [
-      "Insuffisantes (<50%)",
-      "Partiellement couvertes (50-70%)",
-      "Majoritairement couvertes (70-85%)",
-      "Bien couvertes (85-95%)",
-      "Totalement couvertes (>95%)"
-    ],
-    "role": "Stratégique: un responsable de service, chef de projet"
-  },
-  {
-    "dimension": "Compétences",
-    "indicator": "Nb plans de développement des compétences",
-    "question": "Existe-t-il des plans pour développer les compétences ?",
-    "options": [
-      "Aucun (0)",
-      "Informels uniquement",
-      "Quelques plans formels",
-      "Plans formels structurés",
-      "Plans formels intégrés avec suivi continu"
+      "Aucune",
+      "Rarement (1 fois/an)",
+      "Occasionnellement (2-3 fois/an)",
+      "Régulièrement (4-6 fois/an)",
+      "Intégrées aux projets (>6 fois/an)"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -329,11 +287,11 @@
     "indicator": "Taux de participation aux réunions / ateliers",
     "question": "Les partenaires participent-ils activement aux réunions et ateliers ?",
     "options": [
-      "Rarement (<50%)",
-      "Parfois (50-70%)",
-      "Souvent (70-85%)",
-      "Très souvent (85-95%)",
-      "Toujours (>95%)"
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Très souvent",
+      "Toujours"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
@@ -342,11 +300,11 @@
     "indicator": "% actions conjointes réalisées dans les délais",
     "question": "Les actions menées ensemble sont-elles réalisées dans les délais ?",
     "options": [
-      "Rarement (<50%)",
-      "Parfois (50-70%)",
-      "Souvent (70-85%)",
-      "Très souvent (85-95%)",
-      "Toujours (>95%)"
+      "Rarement",
+      "Parfois",
+      "Souvent",
+      "Très souvent",
+      "Toujours"
     ],
     "role": "Stratégique: un responsable de service, chef de projet"
   },
