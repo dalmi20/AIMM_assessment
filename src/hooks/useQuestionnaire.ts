@@ -7,6 +7,9 @@ export interface Question {
   question: string;
   options: string[];
   role: string;
+  skipNextIf?: number[];
+  skipExempt?: boolean;
+  lockOnSkip?: boolean;
 }
 
 export interface Answer {
@@ -21,6 +24,7 @@ export interface UserInfo {
   company: 'Prodeval' | 'Aventech' | null;
   firstName: string;
   lastName: string;
+  jobTitle: string;
 }
 
 export interface QuestionnaireState {
@@ -37,6 +41,7 @@ export function useQuestionnaire() {
   const [userInfo, setUserInfo] = useState<UserInfo>({
     company: null,
     firstName: '',
+    jobTitle: '',
     lastName: '',
   });
 
@@ -165,12 +170,46 @@ export function useQuestionnaire() {
     [answers, filteredQuestions]
   );
 
+  // Check if a question should be skipped because the previous question triggers skipNextIf
+  const isQuestionSkipped = useCallback(
+    (question: Question) => {
+      const allFiltered = filteredQuestions as Question[];
+      const idx = allFiltered.findIndex(
+        (q) => q.dimension === question.dimension && q.indicator === question.indicator && q.question === question.question
+      );
+      if (idx <= 0) return false;
+      const prevQ = allFiltered[idx - 1];
+      if (!prevQ.skipNextIf) return false;
+      const prevAnswer = answers.find(
+        (a) => a.dimension === prevQ.dimension && a.indicator === prevQ.indicator && a.question === prevQ.question
+      );
+      if (!prevAnswer) return false;
+      return prevQ.skipNextIf.includes(prevAnswer.selectedOption);
+    },
+    [filteredQuestions, answers]
+  );
+
+  // Remove answers for specific questions (used for skip logic)
+  const removeAnswersForQuestions = useCallback((questions: Question[]) => {
+    setAnswers((prev) =>
+      prev.filter(
+        (a) =>
+          !questions.some(
+            (q) =>
+              q.dimension === a.dimension &&
+              q.indicator === a.indicator &&
+              q.question === a.question
+          )
+      )
+    );
+  }, []);
+
   // Reset questionnaire
   const reset = useCallback(() => {
     setSelectedRole(null);
     setAnswers([]);
     setCurrentDimensionIndex(0);
-    setUserInfo({ company: null, firstName: '', lastName: '' });
+    setUserInfo({ company: null, firstName: '', lastName: '', jobTitle: '' });
   }, []);
 
   // Export answers as JSON
@@ -219,5 +258,7 @@ export function useQuestionnaire() {
     getDimensionProgress,
     reset,
     exportAnswers,
+    removeAnswersForQuestions,
+    isQuestionSkipped,
   };
 }

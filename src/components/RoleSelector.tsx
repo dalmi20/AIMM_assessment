@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+
 import { CheckCircle2, Users, Briefcase, Building2, User } from 'lucide-react';
 import type { UserInfo } from '@/hooks/useQuestionnaire';
 
@@ -15,7 +16,26 @@ interface RoleSelectorProps {
   onConfirm: () => void;
 }
 
-const COMPANIES: Array<'Prodeval' | 'Aventech'> = ['Prodeval', 'Aventech'];
+// Liste des postes par entreprise avec type de rôle
+const JOB_TITLES: { title: string; company: 'Prodeval' | 'Aventech'; role: 'strategique' | 'operationnel' }[] = [
+  { title: "Chargé d'affaire", company: 'Prodeval', role: 'operationnel' },
+  { title: "Chargé d'affaire (binôme)", company: 'Aventech', role: 'operationnel' },
+  { title: 'Chef de projet', company: 'Aventech', role: 'operationnel' },
+  { title: 'Chef de projet', company: 'Prodeval', role: 'operationnel' },
+  { title: 'Contrôleur FAT Élec', company: 'Prodeval', role: 'operationnel' },
+  { title: 'Contrôleur FAT Méca', company: 'Prodeval', role: 'operationnel' },
+  { title: 'Contrôleur Méca', company: 'Aventech', role: 'operationnel' },
+  { title: 'Approvisionneur', company: 'Prodeval', role: 'operationnel' },
+  { title: "Responsable d'achat", company: 'Prodeval', role: 'strategique' },
+  { title: "Responsable d'achat", company: 'Aventech', role: 'strategique' },
+  { title: 'Planificateur', company: 'Prodeval', role: 'operationnel' },
+  { title: 'Responsable de contrôle opérationnel', company: 'Aventech', role: 'strategique' },
+  { title: 'Responsable de contrôle opérationnel', company: 'Prodeval', role: 'strategique' },
+  { title: 'Responsable Moyens & Outillages - Qualité & Sécurité', company: 'Aventech', role: 'strategique' },
+  { title: "Assistant de chargé d'affaire (binôme côté production)", company: 'Aventech', role: 'operationnel' },
+  { title: 'Agent de logistique', company: 'Aventech', role: 'operationnel' },
+  { title: 'Assistant de responsable production (ARP)', company: 'Aventech', role: 'operationnel' },
+];
 
 export function RoleSelector({
   roles,
@@ -26,6 +46,7 @@ export function RoleSelector({
   onConfirm,
 }: RoleSelectorProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [selectedJobTitle, setSelectedJobTitle] = useState<string>('');
 
   // Map role names to display names and descriptions
   const roleConfig: Record<
@@ -44,12 +65,17 @@ export function RoleSelector({
     },
   };
 
+  // Filtrer les postes selon l'entreprise sélectionnée
+  const filteredJobTitles = userInfo.company
+    ? JOB_TITLES.filter((j) => j.company === userInfo.company)
+    : [];
+
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!userInfo.company) newErrors.company = "Veuillez sélectionner une entreprise.";
     if (!userInfo.firstName.trim()) newErrors.firstName = "Le prénom est requis.";
     if (!userInfo.lastName.trim()) newErrors.lastName = "Le nom est requis.";
-    if (!selectedRole) newErrors.role = "Veuillez sélectionner un rôle.";
+    if (!selectedJobTitle) newErrors.jobTitle = "Veuillez sélectionner votre poste.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -64,7 +90,7 @@ export function RoleSelector({
     userInfo.company !== null &&
     userInfo.firstName.trim() !== '' &&
     userInfo.lastName.trim() !== '' &&
-    selectedRole !== null;
+    selectedJobTitle !== '';
 
   return (
     <div className="w-full space-y-10">
@@ -83,31 +109,62 @@ export function RoleSelector({
 
         {/* Entreprise */}
         <div className="mb-6">
-          <Label className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <span className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             Entreprise <span className="text-destructive">*</span>
-          </Label>
+          </span>
           <div className="flex gap-3 mt-2">
-            {COMPANIES.map((company) => {
-              const isSelected = userInfo.company === company;
-              return (
-                <button
-                  key={company}
-                  type="button"
-                  onClick={() => {
-                    onUpdateUserInfo({ ...userInfo, company });
-                    setErrors((e) => ({ ...e, company: '' }));
-                  }}
-                  className={`flex-1 py-3 px-5 rounded-lg border-2 font-semibold text-sm transition-all duration-200 ${
-                    isSelected
-                      ? 'border-primary bg-primary text-primary-foreground shadow-md'
-                      : 'border-border bg-card text-foreground hover:border-primary/50 hover:bg-primary/5'
-                  }`}
-                >
-                  {company}
-                </button>
-              );
-            })}
+            {/* Prodeval */}
+            <button
+              type="button"
+              onClick={() => {
+                onUpdateUserInfo({ ...userInfo, company: 'Prodeval' });
+                setSelectedJobTitle(''); // Reset job title when company changes
+                setErrors((e) => ({ ...e, company: '', jobTitle: '' }));
+              }}
+              className={`relative flex-1 py-4 px-5 rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2 ${
+                userInfo.company === 'Prodeval'
+                  ? 'border-primary bg-primary/5 shadow-md ring-2 ring-primary/20'
+                  : 'border-border bg-card hover:border-primary/50 hover:bg-primary/5'
+              }`}
+            >
+              <div className="h-16 w-48 flex items-center justify-center">
+                <img
+                  src="/AIMM_assessment/logo-prodeval.png"
+                  alt="Prodeval"
+                  className="object-contain"
+                />
+              </div>
+              {userInfo.company === 'Prodeval' && (
+                <CheckCircle2 className="w-4 h-4 text-primary absolute top-2 right-2" />
+              )}
+            </button>
+
+            {/* Aventech */}
+            <button
+              type="button"
+              onClick={() => {
+                onUpdateUserInfo({ ...userInfo, company: 'Aventech' });
+                setSelectedJobTitle(''); // Reset job title when company changes
+                setErrors((e) => ({ ...e, company: '', jobTitle: '' }));
+              }}
+              className={`relative flex-1 py-4 px-5 rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center gap-2 ${
+                userInfo.company === 'Aventech'
+                  ? 'border-primary bg-primary/5 shadow-md ring-2 ring-primary/20'
+                  : 'border-border bg-card hover:border-primary/50 hover:bg-primary/5'
+              }`}
+            >
+              <div className="h-14 w-40 flex items-center justify-center">
+                <img
+                  src="/AIMM_assessment/logo-aventech.png"
+                  alt="Aventech"
+                  className="object-contain"
+                />
+              </div>
+              {userInfo.company === 'Aventech' && (
+                <CheckCircle2 className="w-4 h-4 text-primary absolute top-2 right-2" />
+              )}
+            </button>
           </div>
           {errors.company && (
             <p className="text-destructive text-xs mt-1">{errors.company}</p>
@@ -115,7 +172,7 @@ export function RoleSelector({
         </div>
 
         {/* Prénom & Nom */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           <div className="space-y-1">
             <Label htmlFor="firstName" className="text-sm font-semibold text-foreground">
               Prénom <span className="text-destructive">*</span>
@@ -154,21 +211,54 @@ export function RoleSelector({
             )}
           </div>
         </div>
+
+        {/* Poste / Fonction */}
+        <div className="space-y-1">
+          <label htmlFor="jobTitle" className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <Briefcase className="w-4 h-4 text-primary" />
+            Poste / Fonction <span className="text-destructive">*</span>
+          </label>
+          <select
+            id="jobTitle"
+            value={selectedJobTitle}
+            onChange={(e) => {
+              const title = e.target.value;
+              setSelectedJobTitle(title);
+              onUpdateUserInfo({ ...userInfo, jobTitle: title });
+              setErrors((err) => ({ ...err, jobTitle: '' }));
+              // Auto-déterminer le rôle à partir du champ role dans JOB_TITLES
+              const job = JOB_TITLES.find(
+                (j) => j.title === title && j.company === userInfo.company
+              );
+              const role = job?.role === 'strategique'
+                ? 'Stratégique: un responsable de service, chef de projet'
+                : 'Tous les acteurs impliqués dans la collaboration';
+              onSelectRole(role);
+            }}
+            disabled={!userInfo.company}
+            className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              errors.jobTitle ? 'border-destructive' : 'border-input'
+            } ${!userInfo.company ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            <option value="">
+              {userInfo.company
+                ? 'Sélectionnez votre poste'
+                : "Sélectionnez d'abord une entreprise"}
+            </option>
+            {filteredJobTitles.map((job, idx) => (
+              <option key={`${job.title}-${idx}`} value={job.title}>
+                {job.title}
+              </option>
+            ))}
+          </select>
+          {errors.jobTitle && (
+            <p className="text-destructive text-xs mt-1">{errors.jobTitle}</p>
+          )}
+        </div>
       </div>
 
-      {/* ── Section 2 : Sélection du rôle ── */}
-      <div>
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-foreground mb-1 flex items-center gap-2">
-            <Briefcase className="w-6 h-6 text-primary" />
-            Sélectionnez votre rôle
-          </h2>
-          <p className="text-muted-foreground">
-            Choisissez le rôle qui correspond le mieux à votre position pour voir
-            les questions pertinentes.
-          </p>
-        </div>
-
+      {/* ── Section 2 : Sélection du rôle (hidden - auto-déterminé par le poste) ── */}
+      <div className="hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {roles.map((role) => {
             const config = roleConfig[role] || {
@@ -219,9 +309,6 @@ export function RoleSelector({
             );
           })}
         </div>
-        {errors.role && (
-          <p className="text-destructive text-xs mt-2">{errors.role}</p>
-        )}
       </div>
 
       {/* ── Récapitulatif & Bouton de confirmation ── */}
@@ -233,6 +320,9 @@ export function RoleSelector({
           </p>
           <p className="text-sm text-foreground">
             <span className="font-medium">Nom :</span> {userInfo.firstName} {userInfo.lastName}
+          </p>
+          <p className="text-sm text-foreground">
+            <span className="font-medium">Poste :</span> {selectedJobTitle}
           </p>
           <p className="text-sm text-foreground">
             <span className="font-medium">Rôle :</span>{' '}
