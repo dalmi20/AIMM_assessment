@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-import { CheckCircle2, Users, Briefcase, Building2, User } from 'lucide-react';
+import { CheckCircle2, Users, Briefcase, Building2, User, PlusCircle } from 'lucide-react';
 import type { UserInfo } from '@/hooks/useQuestionnaire';
 
 interface RoleSelectorProps {
@@ -16,8 +16,10 @@ interface RoleSelectorProps {
   onConfirm: () => void;
 }
 
+type JobTitle = { title: string; company: 'Prodeval' | 'Aventech'; role: 'strategique' | 'operationnel' };
+
 // Liste des postes par entreprise avec type de rôle
-const JOB_TITLES: { title: string; company: 'Prodeval' | 'Aventech'; role: 'strategique' | 'operationnel' }[] = [
+const INITIAL_jobTitles: JobTitle[] = [
   { title: "Chargé d'affaire", company: 'Prodeval', role: 'operationnel' },
   { title: "Chargé d'affaire (binôme)", company: 'Aventech', role: 'operationnel' },
   { title: 'Chef de projet', company: 'Aventech', role: 'operationnel' },
@@ -47,6 +49,17 @@ export function RoleSelector({
 }: RoleSelectorProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [selectedJobTitle, setSelectedJobTitle] = useState<string>('');
+  const [jobTitles, setJobTitles] = useState<JobTitle[]>(() => {
+    try {
+      const saved = localStorage.getItem('customJobTitles');
+      const custom: JobTitle[] = saved ? JSON.parse(saved) : [];
+      return [...INITIAL_jobTitles, ...custom];
+    } catch {
+      return INITIAL_jobTitles;
+    }
+  });
+  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [customJobTitle, setCustomJobTitle] = useState('');
 
   // Map role names to display names and descriptions
   const roleConfig: Record<
@@ -67,7 +80,7 @@ export function RoleSelector({
 
   // Filtrer les postes selon l'entreprise sélectionnée
   const filteredJobTitles = userInfo.company
-    ? JOB_TITLES.filter((j) => j.company === userInfo.company)
+    ? jobTitles.filter((j) => j.company === userInfo.company)
     : [];
 
   const validate = () => {
@@ -226,8 +239,8 @@ export function RoleSelector({
               setSelectedJobTitle(title);
               onUpdateUserInfo({ ...userInfo, jobTitle: title });
               setErrors((err) => ({ ...err, jobTitle: '' }));
-              // Auto-déterminer le rôle à partir du champ role dans JOB_TITLES
-              const job = JOB_TITLES.find(
+              // Auto-déterminer le rôle à partir du champ role dans jobTitles
+              const job = jobTitles.find(
                 (j) => j.title === title && j.company === userInfo.company
               );
               const role = job?.role === 'strategique'
@@ -253,6 +266,65 @@ export function RoleSelector({
           </select>
           {errors.jobTitle && (
             <p className="text-destructive text-xs mt-1">{errors.jobTitle}</p>
+          )}
+
+          {/* Option : poste non trouvé */}
+          {userInfo.company && (
+            <div className="mt-2">
+              {!showCustomInput ? (
+                <button
+                  type="button"
+                  onClick={() => setShowCustomInput(true)}
+                  className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  Mon poste n'est pas dans la liste
+                </button>
+              ) : (
+                <div className="flex gap-2 mt-1">
+                  <Input
+                    placeholder="Saisissez votre poste..."
+                    value={customJobTitle}
+                    onChange={(e) => setCustomJobTitle(e.target.value)}
+                    className="text-sm"
+                  />
+                  <Button
+                    type="button"
+                    size="sm"
+                    disabled={!customJobTitle.trim()}
+                    onClick={() => {
+                      const newJob: JobTitle = {
+                        title: customJobTitle.trim(),
+                        company: userInfo.company!,
+                        role: 'operationnel',
+                      };
+                      setJobTitles((prev) => {
+                        const updated = [...prev, newJob];
+                        const custom = updated.filter(j => !INITIAL_jobTitles.some(i => i.title === j.title && i.company === j.company));
+                        localStorage.setItem('customJobTitles', JSON.stringify(custom));
+                        return updated;
+                      });
+                      setSelectedJobTitle(newJob.title);
+                      onUpdateUserInfo({ ...userInfo, jobTitle: newJob.title });
+                      onSelectRole('Tous les acteurs impliqués dans la collaboration');
+                      setErrors((err) => ({ ...err, jobTitle: '' }));
+                      setCustomJobTitle('');
+                      setShowCustomInput(false);
+                    }}
+                  >
+                    Ajouter
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => { setShowCustomInput(false); setCustomJobTitle(''); }}
+                  >
+                    Annuler
+                  </Button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
