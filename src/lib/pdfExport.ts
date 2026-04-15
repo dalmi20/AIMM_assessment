@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import type { Answer, UserInfo } from '@/hooks/useQuestionnaire';
 
 interface ExportData {
@@ -55,7 +55,7 @@ export function generatePDF(data: ExportData): void {
     ['Date d\'export', new Date().toLocaleDateString('fr-FR')],
   ];
 
-  (doc as any).autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Champ', 'Valeur']],
     body: infoData,
@@ -91,7 +91,7 @@ export function generatePDF(data: ExportData): void {
     ['Taux de complétion', `${data.completionPercentage}%`],
   ];
 
-  (doc as any).autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Métrique', 'Valeur']],
     body: summaryData,
@@ -156,7 +156,7 @@ export function generatePDF(data: ExportData): void {
       answer.selectedText.substring(0, 30) + (answer.selectedText.length > 30 ? '...' : ''),
     ]);
 
-    (doc as any).autoTable({
+    autoTable(doc, {
       startY: yPosition,
       head: [['Indicateur', 'Question', 'Réponse']],
       body: dimensionAnswersData,
@@ -201,4 +201,83 @@ export function generatePDF(data: ExportData): void {
   // Télécharger le PDF
   const fileName = `questionnaire-${data.userInfo.lastName || 'export'}_${data.userInfo.firstName || ''}-${new Date().toISOString().split('T')[0]}.pdf`;
   doc.save(fileName);
+}
+
+export function generatePDFBase64(data: ExportData): string {
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const primaryColor: [number, number, number] = [66, 133, 244];
+  const textColor: [number, number, number] = [33, 33, 33];
+  const lightGray: [number, number, number] = [240, 240, 240];
+  let yPosition = 20;
+
+  doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+  doc.rect(0, 0, pageWidth, 40, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(24);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Grille de Maturité', 20, 25);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Collaboration Logistique', 20, 33);
+
+  yPosition = 50;
+  doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Informations du Participant', 20, yPosition);
+  yPosition += 10;
+
+  autoTable(doc, {
+    startY: yPosition,
+    head: [['Champ', 'Valeur']],
+    body: [
+      ['Entreprise', data.userInfo.company || 'N/A'],
+      ['Prénom', data.userInfo.firstName || 'N/A'],
+      ['Nom', data.userInfo.lastName || 'N/A'],
+      ['Rôle', data.role || 'N/A'],
+      ['Date', new Date().toLocaleDateString('fr-FR')],
+    ],
+    theme: 'grid',
+    headStyles: { fillColor: primaryColor, textColor: [255, 255, 255], fontStyle: 'bold' },
+    bodyStyles: { textColor },
+    alternateRowStyles: { fillColor: lightGray },
+    margin: { left: 20, right: 20 },
+  });
+
+  yPosition = (doc as any).lastAutoTable.finalY + 15;
+
+  const answersByDimension: Record<string, Answer[]> = {};
+  data.answers.forEach((answer) => {
+    if (!answersByDimension[answer.dimension]) answersByDimension[answer.dimension] = [];
+    answersByDimension[answer.dimension].push(answer);
+  });
+
+  Object.entries(answersByDimension).forEach(([dimension, dimAnswers]) => {
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(66, 133, 244);
+    doc.text(dimension, 20, yPosition);
+    yPosition += 8;
+
+    autoTable(doc, {
+      startY: yPosition,
+      head: [['Indicateur', 'Question', 'Réponse']],
+      body: dimAnswers.map((a) => [
+        a.indicator,
+        a.question.substring(0, 50) + (a.question.length > 50 ? '...' : ''),
+        a.selectedText.substring(0, 30) + (a.selectedText.length > 30 ? '...' : ''),
+      ]),
+      theme: 'grid',
+      headStyles: { fillColor: [200, 200, 200] as [number,number,number], textColor, fontStyle: 'bold' },
+      bodyStyles: { textColor, fontSize: 9 },
+      alternateRowStyles: { fillColor: lightGray },
+      columnStyles: { 0: { cellWidth: 40 }, 1: { cellWidth: 70 }, 2: { cellWidth: 60 } },
+      margin: { left: 20, right: 20 },
+    });
+
+    yPosition = (doc as any).lastAutoTable.finalY + 10;
+  });
+
+  return doc.output('datauristring').split(',')[1];
 }

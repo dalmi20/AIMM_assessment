@@ -23,18 +23,17 @@ import { RoleSelector } from '@/components/RoleSelector';
 import { QuestionCard } from '@/components/QuestionCard';
 import { DimensionNav } from '@/components/DimensionNav';
 import {
-  Download,
   RotateCcw,
   ChevronLeft,
   ChevronRight,
   Menu,
-  FileText,
   AlertCircle,
   CheckCircle2,
   Mail,
   BookOpen,
 } from 'lucide-react';
 import { generatePDF } from '@/lib/pdfExport';
+import { uploadJsonToDrive } from '@/lib/googleDrive';
 
 export default function Questionnaire() {
   const {
@@ -174,75 +173,34 @@ export default function Questionnaire() {
   // Vérifier si le questionnaire est complètement rempli
   const isQuestionnaireComplete = progress === 100 && answers.length === filteredQuestions.length;
 
-  const handleExportJSON = () => {
-    const jsonData = exportAnswers();
-    const element = document.createElement('a');
-    element.setAttribute(
-      'href',
-      'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData)
-    );
+
+  const [isSending, setIsSending] = useState(false);
+  const [sendStatus, setSendStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSendByEmail = async () => {
     const safeName = `${userInfo.lastName || 'export'}_${userInfo.firstName || ''}`.replace(/\s+/g, '_');
-    element.setAttribute(
-      'download',
-      `questionnaire-${safeName}-${new Date().toISOString().split('T')[0]}.json`
-    );
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
+    const date = new Date().toISOString().split('T')[0];
+    const exportData = { userInfo, role: selectedRole || '', answers, totalQuestions: filteredQuestions.length, completionPercentage: progress };
 
-  const handleExportPDF = () => {
-    generatePDF({
-      userInfo,
-      role: selectedRole || '',
-      answers,
-      totalQuestions: filteredQuestions.length,
-      completionPercentage: progress,
-    });
-  };
+    setIsSending(true);
+    setSendStatus('idle');
 
-  const handleSendByEmail = () => {
-    // Générer un récapitulatif textuel des réponses
-    let emailBody = `Grille de Maturité - Collaboration Logistique\n\n`;
-    emailBody += `INFORMATIONS DU PARTICIPANT\n`;
-    emailBody += `Nom: ${userInfo.firstName} ${userInfo.lastName}\n`;
-    emailBody += `Entreprise: ${userInfo.company}\n`;
-    emailBody += `Rôle: ${roleLabel}\n\n`;
-    emailBody += `RÉSUMÉ DE COMPLÉTION\n`;
-    emailBody += `Complétude: ${progress}%\n`;
-    emailBody += `Questions répondues: ${answers.length}/${filteredQuestions.length}\n\n`;
-    emailBody += `RÉPONSES DÉTAILLÉES\n`;
-    emailBody += `${'='.repeat(50)}\n\n`;
+    try {
+      const jsonData = exportAnswers();
+      generatePDF(exportData);
 
-    // Grouper les réponses par dimension
-    const groupedByDimension = answers.reduce((acc, answer) => {
-      if (!acc[answer.dimension]) {
-        acc[answer.dimension] = [];
-      }
-      acc[answer.dimension].push(answer);
-      return acc;
-    }, {} as Record<string, typeof answers>);
+      await uploadJsonToDrive(
+        `questionnaire-${safeName}-${date}`,
+        jsonData
+      );
 
-    // Ajouter les réponses groupées
-    Object.entries(groupedByDimension).forEach(([dimension, dimensionAnswers]) => {
-      emailBody += `DIMENSION: ${dimension}\n`;
-      emailBody += `${'-'.repeat(50)}\n`;
-      dimensionAnswers.forEach((answer) => {
-        emailBody += `\nIndicateur: ${answer.indicator}\n`;
-        emailBody += `Question: ${answer.question}\n`;
-        emailBody += `Réponse: ${answer.selectedText}\n`;
-      });
-      emailBody += `\n`;
-    });
-
-    // Créer le lien mailto
-    const subject = `Résultats Questionnaire - ${userInfo.firstName} ${userInfo.lastName} - ${new Date().toLocaleDateString('fr-FR')}`;
-    const encodedBody = encodeURIComponent(emailBody);
-    const mailtoLink = `mailto:kessaissiaferdaous@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
-
-    // Ouvrir le client de messagerie
-    window.location.href = mailtoLink;
+      setSendStatus('success');
+    } catch (err: any) {
+      console.error('Submit error:', err);
+      setSendStatus('error');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleReset = () => {
@@ -328,7 +286,6 @@ export default function Questionnaire() {
     'Gestion des connaissances': "Le partage, la transmission et la mise à jour des savoirs et bonnes pratiques entre les acteurs de la collaboration.",
   };
 
-  const roleLabel = selectedRole ?? 'Non défini';
   const partnerCompany = userInfo.company === 'Prodeval' ? 'AVENTECH' : 'PRODEVAL';
   const userCompany = userInfo.company?.toUpperCase() || '';
   const resolveQuestion = (text: string) =>
@@ -406,32 +363,6 @@ export default function Questionnaire() {
 
               {/* Action Buttons */}
               <div className="space-y-2 pt-4 border-t border-border">
-                <Button
-                  onClick={handleExportJSON}
-                  disabled={!isQuestionnaireComplete}
-                  className="w-full gap-2"
-                  variant="default"
-                >
-                  <Download className="w-4 h-4" />
-                  Exporter JSON
-                </Button>
-                <Button
-                  onClick={handleExportPDF}
-                  disabled={!isQuestionnaireComplete}
-                  className="w-full gap-2"
-                  variant="outline"
-                >
-                  <FileText className="w-4 h-4" />
-                  Exporter PDF
-                </Button>
-                <Button
-                  onClick={handleSendByEmail}
-                  disabled={!isQuestionnaireComplete}
-                  className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  <Mail className="w-4 h-4" />
-                  Envoyer par E-mail
-                </Button>
                 <Button
                   onClick={() => setShowResetDialog(true)}
                   variant="outline"
@@ -621,19 +552,23 @@ export default function Questionnaire() {
                   ✓ Questionnaire complété !
                 </h3>
                 <p className="text-emerald-800 mb-4">
-                  Vous avez répondu à toutes les questions. Vous pouvez maintenant
-                  exporter vos réponses en JSON ou PDF.
+                  Vous avez répondu à toutes les questions. Cliquez sur Submit pour envoyer vos réponses.
                 </p>
-                <div className="flex gap-2">
-                  <Button onClick={handleExportJSON} className="gap-2 flex-1">
-                    <Download className="w-4 h-4" />
-                    Exporter JSON
-                  </Button>
-                  <Button onClick={handleExportPDF} variant="outline" className="gap-2 flex-1">
-                    <FileText className="w-4 h-4" />
-                    Exporter PDF
-                  </Button>
-                </div>
+                <Button
+                  onClick={handleSendByEmail}
+                  disabled={isSending}
+                  className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                  size="lg"
+                >
+                  <Mail className="w-5 h-5" />
+                  {isSending ? 'Envoi en cours...' : 'Submit'}
+                </Button>
+                {sendStatus === 'success' && (
+                  <p className="text-sm text-emerald-700 text-center mt-2">✓ Email envoyé avec succès !</p>
+                )}
+                {sendStatus === 'error' && (
+                  <p className="text-sm text-amber-700 text-center mt-2">EmailJS non configuré — fichiers téléchargés localement.</p>
+                )}
               </Card>
             )}
           </div>

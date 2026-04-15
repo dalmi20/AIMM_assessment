@@ -25,6 +25,7 @@ export interface UserInfo {
   firstName: string;
   lastName: string;
   jobTitle: string;
+  email: string;
 }
 
 export interface QuestionnaireState {
@@ -43,6 +44,7 @@ export function useQuestionnaire() {
     firstName: '',
     jobTitle: '',
     lastName: '',
+    email: '',
   });
 
   // Get unique roles from questions
@@ -209,7 +211,7 @@ export function useQuestionnaire() {
     setSelectedRole(null);
     setAnswers([]);
     setCurrentDimensionIndex(0);
-    setUserInfo({ company: null, firstName: '', lastName: '', jobTitle: '' });
+    setUserInfo({ company: null, firstName: '', lastName: '', jobTitle: '', email: '' });
   }, []);
 
   // Export answers as JSON
