@@ -4,13 +4,6 @@ import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from '@/components/ui/dialog';
-import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -62,7 +55,6 @@ export default function Questionnaire() {
   // Whether the user has confirmed their info & role and entered the questionnaire
   const [questionnaireStarted, setQuestionnaireStarted] = useState(false);
   const [showDimensionGlossary, setShowDimensionGlossary] = useState(false);
-  const [acknowledgedDimensions, setAcknowledgedDimensions] = useState<Set<string>>(new Set());
   const [showResetDialog, setShowResetDialog] = useState(false);
 
   const DIMENSION_GLOSSARY: Record<string, { term: string; definition: string }[]> = {
@@ -141,12 +133,10 @@ export default function Questionnaire() {
   const [navigationError, setNavigationError] = useState('');
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0); // Index de la question active dans la dimension
 
-  // Show dimension glossary popup when arriving at a new unacknowledged dimension
+  // Reset glossary panel when navigating to a new dimension
   useEffect(() => {
-    if (questionnaireStarted && currentDimensionName && !acknowledgedDimensions.has(currentDimensionName)) {
-      setShowDimensionGlossary(true);
-    }
-  }, [currentDimensionIndex, currentDimensionName, questionnaireStarted]);
+    setShowDimensionGlossary(false);
+  }, [currentDimensionIndex]);
 
   // Reset sidebar on larger screens
   useEffect(() => {
@@ -208,7 +198,6 @@ export default function Questionnaire() {
     setQuestionnaireStarted(false);
     setShowResetDialog(false);
     setNavigationError('');
-    setAcknowledgedDimensions(new Set());
   };
 
   const handleChangeRole = () => {
@@ -393,16 +382,26 @@ export default function Questionnaire() {
                 {isCurrentDimensionComplete() && (
                   <CheckCircle2 className="w-8 h-8 text-emerald-500 flex-shrink-0" />
                 )}
-                {acknowledgedDimensions.has(currentDimensionName) && (
+                {DIMENSION_GLOSSARY[currentDimensionName]?.length > 0 && (
                   <button
-                    onClick={() => setShowDimensionGlossary(true)}
+                    onClick={() => setShowDimensionGlossary(v => !v)}
                     className="inline-flex items-center gap-1.5 text-xs font-medium text-violet-700 bg-violet-50 border border-violet-200 px-2.5 py-1 rounded-full hover:bg-violet-100 transition-colors"
                   >
                     <BookOpen className="w-3.5 h-3.5" />
-                    Glossaire lu
+                    {showDimensionGlossary ? 'Masquer le glossaire' : 'Glossaire'}
                   </button>
                 )}
               </div>
+              {showDimensionGlossary && DIMENSION_GLOSSARY[currentDimensionName] && (
+                <div className="mt-3 p-4 bg-violet-50 border border-violet-200 rounded-lg space-y-3">
+                  {DIMENSION_GLOSSARY[currentDimensionName].map(({ term, definition }) => (
+                    <div key={term} className="border-l-4 border-violet-400 pl-3">
+                      <p className="text-sm font-semibold text-foreground">{term}</p>
+                      <p className="text-sm text-muted-foreground mt-0.5">{definition}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Dimension Definition Card */}
@@ -575,38 +574,6 @@ export default function Questionnaire() {
         </div>
       </div>
 
-
-      {/* Dimension Glossary Dialog */}
-      <Dialog open={showDimensionGlossary} onOpenChange={setShowDimensionGlossary}>
-        <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-violet-600" />
-              {currentDimensionName}
-            </DialogTitle>
-            <DialogDescription>
-              Quelques termes clés pour mieux comprendre les questions de cette dimension.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 mt-2">
-            {(DIMENSION_GLOSSARY[currentDimensionName] ?? []).map(({ term, definition }) => (
-              <div key={term} className="border-l-4 border-violet-400 pl-4 py-1">
-                <p className="text-sm font-semibold text-foreground">{term}</p>
-                <p className="text-sm text-muted-foreground mt-0.5">{definition}</p>
-              </div>
-            ))}
-          </div>
-          <Button
-            className="w-full mt-4 bg-violet-600 hover:bg-violet-700 text-white"
-            onClick={() => {
-              setAcknowledgedDimensions((prev) => new Set(prev).add(currentDimensionName));
-              setShowDimensionGlossary(false);
-            }}
-          >
-            J'ai compris, continuer
-          </Button>
-        </DialogContent>
-      </Dialog>
 
       {/* Reset Dialog */}
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
