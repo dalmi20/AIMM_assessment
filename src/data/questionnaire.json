@@ -584,7 +584,7 @@
   {
     "dimension": "Transparence des processus métiers",
     "indicator": "Taux de visibilité partagée",
-    "question": "Est-ce que vous avez accès à l'avancement des activités qui vous concernent ?",
+    "question": "Avez-vous une vision de l'avancement des activités réalisées par {PARTNER} qui vous concernent ?",
     "options": [
       "Très peu",
       "Partiellement",
@@ -688,7 +688,7 @@
   {
     "dimension": "Donnée de processus",
     "indicator": "Mode de partage",
-    "question": "Comment partagez-vous les données nécessaires dand le  processus  collaborative de lalogistique ?",
+    "question": "Comment partagez-vous les données nécessaires dans le  processus  collaboratif de la logistique ?",
     "options": [
       "Informel (verbal)",
       "Partage manuel structuré (emails)",
