@@ -86,51 +86,7 @@
     "role": "Stratégique: un responsable de service, chef de projet",
     "definition": "Formaliser un accord officiel entre partenaires précisant les conditions de service, le niveau de qualité attendu et les responsabilités de chaque partie."
   },
-  {
-    "dimension": "Culture et valeurs Organisationnels",
-    "indicator": "% collaborateurs déclarant valeurs claires/partagées",
-    "question": "Les méthodes de travail et les valeurs de {PARTNER} sont-elles claires pour vous ?",
-    "options": [
-      "Pas claires",
-      "Partiellement claires (25-50%)",
-      "Claires (50-75%)",
-      "Très claires (75-90%)",
-      "Très claires et partagées (>90%)",
-      "Hors de mon périmètre"
-    ],
-    "role": "Tous les acteurs impliqués dans la collaboration",
-    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
-  },
-  {
-    "dimension": "Culture et valeurs Organisationnels",
-    "indicator": "Nb actions de promotion culture commune / an",
-    "question": "Des actions sont-elles menées pour améliorer la collaboration ?",
-    "options": [
-      "Aucune (0)",
-      "Occasionnellement (1-2/an)",
-      "Régulièrement (3-6/an)",
-      "Fréquemment (>6/an)",
-      "Intégrées au fonctionnement quotidien",
-      "Hors de mon périmètre"
-    ],
-    "role": "Tous les acteurs impliqués dans la collaboration",
-    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
-  },
-  {
-    "dimension": "Culture et valeurs Organisationnels",
-    "indicator": "Taux de conflits culturels signalés",
-    "question": "Rencontrez-vous des conflits liés aux différences de culture ?",
-    "options": [
-      "Très souvent (>5 fois/trimestre)",
-      "Souvent (3-5 fois/trimestre)",
-      "Parfois (1-2 fois/trimestre)",
-      "Rarement (<une seule fois/trimestre)",
-      "Jamais",
-      "Hors de mon périmètre"
-    ],
-    "role": "Stratégique: un responsable de service, chef de projet",
-    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
-  },
+  
   {
     "dimension": "Marché/technologie",
     "indicator": "Fréquence de veille partagée",
@@ -223,65 +179,51 @@
     "definition": "Assurer une transparence et un partage clair entre partenaires concernant les coûts, budgets et tous les aspects financiers des projets communs."
   },
   {
-    "dimension": "Rôles et responsabilités",
-    "indicator": "% collaborateurs sachant « qui fait quoi » chez le partenaire",
-    "question": "Les équipes savent-elles clairement qui fait quoi chez {PARTNER} ?",
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "% collaborateurs déclarant valeurs claires/partagées",
+    "question": "Les méthodes de travail et les valeurs de {PARTNER} sont-elles claires pour vous ?",
     "options": [
-      "Je ne sais pas qui fait quoi chez {PARTNER}",
-      "J’ai une connaissance très limitée de ces rôles",
-      "J’ai une connaissance partielle de ces rôles",
-      "Je connais bien ces rôles clés",
-      "J’ai une connaissance claire et généralisée de ces rôles",
+      "Pas claires",
+      "Partiellement claires (25-50%)",
+      "Claires (50-75%)",
+      "Très claires (75-90%)",
+      "Très claires et partagées (>90%)",
       "Hors de mon périmètre"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration",
-    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
   },
   {
-    "dimension": "Rôles et responsabilités",
-    "indicator": "% rôles formalisés (RACI/organigramme)",
-    "question": "Les rôles entre votre entreprise et {PARTNER} sont-ils clairement formalisés ?",
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "Nb actions de promotion culture commune / an",
+    "question": "Des actions sont-elles menées pour améliorer la collaboration ?",
     "options": [
-      "Aucun rôle formalisé",
-      "Très peu de rôles formalisés",
-      "Une partie des rôles formalisés",
-      "La majorité des rôles formalisés",
-      "Tous les rôles sont formalisés et à jour",
+      "Aucune (0)",
+      "Occasionnellement (1-2/an)",
+      "Régulièrement (3-6/an)",
+      "Fréquemment (>6/an)",
+      "Intégrées au fonctionnement quotidien",
       "Hors de mon périmètre"
     ],
     "role": "Tous les acteurs impliqués dans la collaboration",
-    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
   },
   {
-    "dimension": "Rôles et responsabilités",
-    "indicator": "Nb chevauchements / zones grises / an",
-    "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités entre les deux entreprises ?",
+    "dimension": "Culture et valeurs Organisationnels",
+    "indicator": "Taux de conflits culturels signalés",
+    "question": "Rencontrez-vous des conflits liés aux différences de culture ?",
     "options": [
-      "Très souvent (>10 fois/an)",
-      "Souvent (6-10 fois/an)",
-      "Parfois (3-5 fois/an)",
-      "Rarement (1-2 fois/an)",
+      "Très souvent (>5 fois/trimestre)",
+      "Souvent (3-5 fois/trimestre)",
+      "Parfois (1-2 fois/trimestre)",
+      "Rarement (<une seule fois/trimestre)",
       "Jamais",
-      "Hors de mon périmètre"
-    ],
-    "role": "Tous les acteurs impliqués dans la collaboration",
-    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
-  },
-  {
-    "dimension": "Rôles et responsabilités",
-    "indicator": "Mise à jour formelle des responsabilités",
-    "question": "Les rôles et responsabilités sont-ils mis à jour si des personnes changent ?",
-    "options": [
-      "Jamais",
-      "Annuellement",
-      "Occasionnellement (semestriellement)",
-      "Régulièrement (trimestriellement)",
-      "À chaque changement important (proactif)",
       "Hors de mon périmètre"
     ],
     "role": "Stratégique: un responsable de service, chef de projet",
-    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+    "definition": "Favoriser l'acceptation et le respect des méthodes de travail, de la culture et des valeurs propres à chaque partenaire."
   },
+  
   {
     "dimension": "Compétences",
     "indicator": "% compétences clés identifiées / cartographiées",
@@ -369,6 +311,66 @@
     ],
     "role": "Stratégique: un responsable de service, chef de projet",
     "definition": "Assurer l'implication active et continue des partenaires pour atteindre les objectifs communs."
+  },
+  {
+    "dimension": "Rôles et responsabilités",
+    "indicator": "% collaborateurs sachant « qui fait quoi » chez le partenaire",
+    "question": "Les équipes savent-elles clairement qui fait quoi chez {PARTNER} ?",
+    "options": [
+      "Je ne sais pas qui fait quoi chez {PARTNER}",
+      "J’ai une connaissance très limitée de ces rôles",
+      "J’ai une connaissance partielle de ces rôles",
+      "Je connais bien ces rôles clés",
+      "J’ai une connaissance claire et généralisée de ces rôles",
+      "Hors de mon périmètre"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration",
+    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+  },
+  {
+    "dimension": "Rôles et responsabilités",
+    "indicator": "% rôles formalisés (RACI/organigramme)",
+    "question": "Les rôles entre votre entreprise et {PARTNER} sont-ils clairement formalisés ?",
+    "options": [
+      "Aucun rôle formalisé",
+      "Très peu de rôles formalisés",
+      "Une partie des rôles formalisés",
+      "La majorité des rôles formalisés",
+      "Tous les rôles sont formalisés et à jour",
+      "Hors de mon périmètre"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration",
+    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+  },
+  {
+    "dimension": "Rôles et responsabilités",
+    "indicator": "Nb chevauchements / zones grises / an",
+    "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités entre les deux entreprises ?",
+    "options": [
+      "Très souvent (>10 fois/an)",
+      "Souvent (6-10 fois/an)",
+      "Parfois (3-5 fois/an)",
+      "Rarement (1-2 fois/an)",
+      "Jamais",
+      "Hors de mon périmètre"
+    ],
+    "role": "Tous les acteurs impliqués dans la collaboration",
+    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
+  },
+  {
+    "dimension": "Rôles et responsabilités",
+    "indicator": "Mise à jour formelle des responsabilités",
+    "question": "Les rôles et responsabilités sont-ils mis à jour si des personnes changent ?",
+    "options": [
+      "Jamais",
+      "Annuellement",
+      "Occasionnellement (semestriellement)",
+      "Régulièrement (trimestriellement)",
+      "À chaque changement important (proactif)",
+      "Hors de mon périmètre"
+    ],
+    "role": "Stratégique: un responsable de service, chef de projet",
+    "definition": "Définir clairement les rôles et les responsabilités de chaque partenaire pour garantir que les tâches, objectifs et champs d'action de chacun soient bien compris et attribués."
   },
   {
     "dimension": "Définition des processus métiers",
