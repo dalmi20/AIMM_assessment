@@ -22,8 +22,8 @@ type JobTitle = { title: string; company: 'Prodeval' | 'Aventech'; role: 'strate
 const INITIAL_jobTitles: JobTitle[] = [
   { title: "Chargé d'affaire", company: 'Prodeval', role: 'operationnel' },
   { title: "Chargé d'affaire (binôme)", company: 'Aventech', role: 'operationnel' },
-  { title: 'Chef de projet', company: 'Aventech', role: 'operationnel' },
-  { title: 'Chef de projet', company: 'Prodeval', role: 'operationnel' },
+  { title: 'Chef de projet', company: 'Aventech', role: 'strategique' },
+  { title: 'Chef de projet', company: 'Prodeval', role: 'strategique' },
   { title: 'Contrôleur FAT Élec', company: 'Prodeval', role: 'operationnel' },
   { title: 'Contrôleur FAT Méca', company: 'Prodeval', role: 'operationnel' },
   { title: 'Contrôleur Méca', company: 'Aventech', role: 'operationnel' },
