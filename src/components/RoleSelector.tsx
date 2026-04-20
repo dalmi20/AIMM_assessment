@@ -89,8 +89,6 @@ export function RoleSelector({
     if (!userInfo.firstName.trim()) newErrors.firstName = "Le prénom est requis.";
     if (!userInfo.lastName.trim()) newErrors.lastName = "Le nom est requis.";
     if (!selectedJobTitle) newErrors.jobTitle = "Veuillez sélectionner votre poste.";
-    if (!userInfo.email.trim()) newErrors.email = "L'email est requis.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email)) newErrors.email = "Email invalide.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -105,8 +103,7 @@ export function RoleSelector({
     userInfo.company !== null &&
     userInfo.firstName.trim() !== '' &&
     userInfo.lastName.trim() !== '' &&
-    selectedJobTitle !== '' &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email);
+    selectedJobTitle !== '';
 
   return (
     <div className="w-full space-y-10">
@@ -226,27 +223,6 @@ export function RoleSelector({
               <p className="text-destructive text-xs">{errors.lastName}</p>
             )}
           </div>
-        </div>
-
-        {/* Email */}
-        <div className="space-y-1">
-          <Label htmlFor="email" className="text-sm font-semibold text-foreground">
-            Email <span className="text-destructive">*</span>
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="votre@email.com"
-            value={userInfo.email}
-            onChange={(e) => {
-              onUpdateUserInfo({ ...userInfo, email: e.target.value });
-              setErrors((err) => ({ ...err, email: '' }));
-            }}
-            className={errors.email ? 'border-destructive' : ''}
-          />
-          {errors.email && (
-            <p className="text-destructive text-xs">{errors.email}</p>
-          )}
         </div>
 
         {/* Poste / Fonction */}

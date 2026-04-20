@@ -54,7 +54,7 @@ export default function Questionnaire() {
 
   // Whether the user has confirmed their info & role and entered the questionnaire
   const [questionnaireStarted, setQuestionnaireStarted] = useState(false);
-  const [showDimensionGlossary, setShowDimensionGlossary] = useState(false);
+  const [showDimensionGlossary, setShowDimensionGlossary] = useState(true);
   const [showResetDialog, setShowResetDialog] = useState(false);
 
   const DIMENSION_GLOSSARY: Record<string, { term: string; definition: string }[]> = {
@@ -131,11 +131,11 @@ export default function Questionnaire() {
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [navigationError, setNavigationError] = useState('');
-  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0); // Index de la question active dans la dimension
-
-  // Reset glossary panel when navigating to a new dimension
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+  // Open glossary panel and scroll to top when navigating to a new dimension
   useEffect(() => {
-    setShowDimensionGlossary(false);
+    setShowDimensionGlossary(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentDimensionIndex]);
 
   // Reset sidebar on larger screens
