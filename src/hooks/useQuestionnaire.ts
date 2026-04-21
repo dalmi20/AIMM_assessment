@@ -54,15 +54,35 @@ export function useQuestionnaire() {
     return Array.from(uniqueRoles).sort();
   }, []);
 
-  // Filter questions based on selected role
+  // Dimensions exclues selon le titre du poste
+  const EXCLUDED_DIMENSIONS_BY_TITLE: { pattern: RegExp; dimensions: string[] }[] = [
+    {
+      pattern: /logistique|supply.?chain/i,
+      dimensions: ['Marché/technologie', 'Coûts / Finances'],
+    },
+  ];
+
+  const excludedDimensions = useMemo(() => {
+    const title = userInfo.jobTitle || '';
+    const excluded = new Set<string>();
+    for (const rule of EXCLUDED_DIMENSIONS_BY_TITLE) {
+      if (rule.pattern.test(title)) {
+        rule.dimensions.forEach(d => excluded.add(d));
+      }
+    }
+    return excluded;
+  }, [userInfo.jobTitle]);
+
+  // Filter questions based on selected role and excluded dimensions
   const filteredQuestions = useMemo(() => {
     if (!selectedRole) return [];
     return questionsData.filter(
       (q: Question) =>
-        q.role === selectedRole ||
-        q.role === 'Tous les acteurs impliqués dans la collaboration'
+        (q.role === selectedRole ||
+          q.role === 'Tous les acteurs impliqués dans la collaboration') &&
+        !excludedDimensions.has(q.dimension)
     );
-  }, [selectedRole]);
+  }, [selectedRole, excludedDimensions]);
 
   // Get unique dimensions from filtered questions
   const dimensions = useMemo(() => {
