@@ -239,14 +239,10 @@ export function RoleSelector({
               setSelectedJobTitle(title);
               onUpdateUserInfo({ ...userInfo, jobTitle: title });
               setErrors((err) => ({ ...err, jobTitle: '' }));
-              // Auto-déterminer le rôle à partir du champ role dans jobTitles
-              const job = jobTitles.find(
-                (j) => j.title === title && j.company === userInfo.company
-              );
-              const role = job?.role === 'strategique'
+              const isStrategique = /^(responsable|chef|directeur|manager)/i.test(title);
+              onSelectRole(isStrategique
                 ? 'Stratégique: un responsable de service, chef de projet'
-                : 'Tous les acteurs impliqués dans la collaboration';
-              onSelectRole(role);
+                : 'Tous les acteurs impliqués dans la collaboration');
             }}
             disabled={!userInfo.company}
             className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
