@@ -2,7 +2,7 @@
   {
     "dimension": "Contrat de partenariat",
     "indicator": "Existence d'une contrat formalisé",
-    "question": "Existe-t-il une contrat écrite entre les deux entreprises qui definit les responsabilités de chacune d'elle dans le processus de la logistique ?",
+    "question": "Existe-t-il un contrat écrite entre les deux entreprises qui definit les responsabilités de chacune d'elle dans le processus de la logistique ?",
     "options": [
       "Non, aucune contrat",
       "Oui, mais accords verbaux uniquement",
@@ -16,7 +16,7 @@
   {
     "dimension": "Contrat de partenariat",
     "indicator": "Accords documentés et accessibles",
-    "question": "Cette contrat est-elle faciles à consulter ?",
+    "question": "Ce contrat est-il faciles à consulter?",
     "options": [
       "Non ",
       "difficiles d'accès",
@@ -30,7 +30,7 @@
   {
     "dimension": "Contrat de partenariat",
     "indicator": "% activités couverts par les accords",
-    "question": "Quelle part des activités logistiques est couverte par cette contrat ?",
+    "question": "Quelle part des activités logistiques est couverte par ce contrat ?",
     "options": [
       "Aucun ",
       "Moins de la moitié ",
@@ -44,7 +44,7 @@
   {
     "dimension": "Contrat de partenariat",
     "indicator": "% SLA partagés et respectés",
-    "question": "Les engagements définis dans la contrat sont-ils respectés ?",
+    "question": "Les engagements définis dans le contrat sont-ils respectés ?",
     "options": [
       "Rarement",
       "Parfois",
@@ -74,7 +74,7 @@
   {
     "dimension": "Contrat de partenariat",
     "indicator": "Existence & fréquence de revue/mise à jour",
-    "question": "Les accords sont-ils revus et mis à jour ?",
+    "question": "Les accords inclus dans le contrat sont-ils revus et mis à jour ?",
     "options": [
       "Jamais révisés",
       "Annuellement ou moins",
@@ -90,7 +90,7 @@
   {
     "dimension": "Marché/technologie",
     "indicator": "Fréquence de veille partagée",
-    "question": "(AVENTECH/PRODEVAL) échangent-ils régulièrement sur le marché de biogaz ou/et la technologie associée ?",
+    "question": "(AVENTECH/PRODEVAL) échangent-ils régulièrement sur le marché de biogaz ou/et la technologie associée?",
     "options": [
       "Jamais",
       "Annuellement",
@@ -241,7 +241,7 @@
   {
     "dimension": "Compétences",
     "indicator": "Nb formations conjointes / an",
-    "question": "Des formations communes avec le partenaire sont-elles organisées?",
+    "question": "Des formations communes avec {PARTNER} sont-elles organisées?",
     "options": [
       "Aucune",
       "Rarement (1 fois/an)",
@@ -539,7 +539,7 @@
   {
     "dimension": "Pilotage des processus métiers",
     "indicator": "Fréquence / taux de revues conjointes",
-    "question": "Le performance de le processus est-elle revue ensemble avec le partenaire ?",
+    "question": "La performance du processus est-elle revue ensemble avec {PARTNER} ?",
     "options": [
       "Jamais",
       "Annuellement",
@@ -718,7 +718,7 @@
   {
     "dimension": "Donnée de processus",
     "indicator": "Délai de propagation",
-    "question": "Quel est le délai de propagation des données chez le partenaire ?",
+    "question": "Quel est le délai de propagation des données chez {PARTNER} ?",
     "options": [
       "Plusieurs jours (>3 jours)",
       "Après un certain délai (1-3 jours)",
@@ -761,7 +761,7 @@
   {
     "dimension": "Données de produits",
     "indicator": "Taux de partage des données produit",
-    "question": "Les données produit sont-elles accessibles au partenaire ?",
+    "question": "Les données produit sont-elles accessibles à {PARTNER} ?",
     "options": [
       "non, pas du tout",
       "Très peu",
@@ -776,7 +776,7 @@
   {
     "dimension": "Données de produits",
     "indicator": "Mode d'accès",
-    "question": "Comment le partenaire accède-t-il aux données produit ?",
+    "question": "Comment {PARTNER} accède-t-il aux données produit ?",
     "options": [
       "Sur demande uniquement",
       "Accès ponctuel : accès accordé de manière occasionnelle, à des moments précis ou pour des besoins spécifiques.",
@@ -819,7 +819,7 @@
   {
     "dimension": "Données de produits",
     "indicator": "Délai de diffusion des modifications",
-    "question": "Quel est le délai de diffusion de modifications des données produit chez le partenaire ?",
+    "question": "Quel est le délai de diffusion de modifications des données produit chez {PARTNER} ?",
     "options": [
       "jamais partagé",
       "Avec beaucoup de retard",
