@@ -644,7 +644,7 @@
   {
     "dimension": "Gestion des incidents et risques",
     "indicator": "Temps de réaction aux incidents",
-    "question": "Temps de réaction aux incidents",
+    "question": "Temps de réaction aux ces incidents",
     "options": [
       "Lent (>48h)",
       "Acceptable (<48h)",
@@ -658,7 +658,7 @@
   {
     "dimension": "Gestion des incidents et risques",
     "indicator": "Taux d'anticipation des risques",
-    "question": "Les risques sont-ils identifiés avant qu'ils ne se produisent ?",
+    "question": "Est-ce qu’il vous arrive un jour de détecter un problème avant qu’il ne se produise ??",
     "options": [
       "Jamais",
       "Rarement",

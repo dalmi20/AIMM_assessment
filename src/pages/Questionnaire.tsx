@@ -424,11 +424,12 @@ export default function Questionnaire() {
                 : undefined;
               const firstAnsweredOption = firstAnswer?.selectedOption;
               const isCultureDimension = currentDimensionName === 'Culture et valeurs Organisationnels';
+              const isSkipExemptDimension = currentDimensionName === 'Définition des processus métiers';
               const isFirstOptionSelected = firstAnsweredOption === 0;
               const remainingQuestions = currentDimensionQuestions.slice(1).filter(q => !q.skipExempt);
 
-              // Pour les dimensions non-Culture : cacher les questions si option 0 (sauf skipExempt)
-              const visibleQuestions = (!isCultureDimension && isFirstOptionSelected)
+              // Pour les dimensions non-Culture et non-exemptées : cacher les questions si option 0 (sauf skipExempt)
+              const visibleQuestions = (!isCultureDimension && !isSkipExemptDimension && isFirstOptionSelected)
                 ? [firstQuestion, ...currentDimensionQuestions.slice(1).filter(q => q.skipExempt)]
                 : currentDimensionQuestions;
 
@@ -470,8 +471,8 @@ export default function Questionnaire() {
                           );
                           setNavigationError('');
 
-                          // Skip logic pour dimensions non-Culture
-                          if (index === 0 && !isCultureDimension) {
+                          // Skip logic pour dimensions non-Culture et non-exemptées
+                          if (index === 0 && !isCultureDimension && !isSkipExemptDimension) {
                             if (optionIndex === 0) {
                               remainingQuestions.forEach((q) => {
                                 answerQuestion(q.dimension, q.indicator, q.question, 0, q.options[0]);
@@ -517,32 +518,34 @@ export default function Questionnaire() {
               </Card>
             )}
 
-            {/* Navigation */}
-            <div className="flex items-center justify-between pt-8 border-t border-border">
-              <Button
-                onClick={handleNavigateToPrevious}
-                disabled={currentDimensionIndex === 0}
-                variant="outline"
-                className="gap-2"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Précédent
-              </Button>
+            {/* Navigation — masquée quand le questionnaire est complété */}
+            {!isQuestionnaireComplete && (
+              <div className="flex items-center justify-between pt-8 border-t border-border">
+                <Button
+                  onClick={handleNavigateToPrevious}
+                  disabled={currentDimensionIndex === 0}
+                  variant="outline"
+                  className="gap-2"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Précédent
+                </Button>
 
-              <div className="text-sm text-muted-foreground">
-                Dimension {currentDimensionIndex + 1} sur {dimensions.length}
+                <div className="text-sm text-muted-foreground">
+                  Dimension {currentDimensionIndex + 1} sur {dimensions.length}
+                </div>
+
+                <Button
+                  onClick={handleNavigateToNext}
+                  disabled={currentDimensionIndex === dimensions.length - 1}
+                  className="gap-2"
+                  variant={!isCurrentDimensionComplete() ? 'destructive' : 'default'}
+                >
+                  Suivant
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
               </div>
-
-              <Button
-                onClick={handleNavigateToNext}
-                disabled={currentDimensionIndex === dimensions.length - 1}
-                className="gap-2"
-                variant={!isCurrentDimensionComplete() ? 'destructive' : 'default'}
-              >
-                Suivant
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            </div>
+            )}
 
             {/* Completion Message */}
             {isQuestionnaireComplete && (
@@ -550,8 +553,11 @@ export default function Questionnaire() {
                 <h3 className="text-lg font-semibold text-emerald-900 mb-2">
                   ✓ Questionnaire complété !
                 </h3>
-                <p className="text-emerald-800 mb-4">
-                  Vous avez répondu à toutes les questions. Cliquez sur Submit pour envoyer vos réponses.
+                <p className="text-emerald-800 mb-2">
+                  Merci pour votre contribution.
+                </p>
+                <p className="text-emerald-700 text-sm mb-4">
+                  Cliquez sur Soumettre pour envoyer vos réponses.
                 </p>
                 <Button
                   onClick={handleSendByEmail}
@@ -560,13 +566,13 @@ export default function Questionnaire() {
                   size="lg"
                 >
                   <Mail className="w-5 h-5" />
-                  {isSending ? 'Envoi en cours...' : 'Submit'}
+                  {isSending ? 'Envoi en cours...' : 'Soumettre'}
                 </Button>
                 {sendStatus === 'success' && (
-                  <p className="text-sm text-emerald-700 text-center mt-2">✓ Email envoyé avec succès !</p>
+                  <p className="text-sm text-emerald-700 text-center mt-2">✓ Réponses envoyées avec succès !</p>
                 )}
                 {sendStatus === 'error' && (
-                  <p className="text-sm text-amber-700 text-center mt-2">EmailJS non configuré — fichiers téléchargés localement.</p>
+                  <p className="text-sm text-red-600 text-center mt-2">Une erreur est survenue. Veuillez réessayer.</p>
                 )}
               </Card>
             )}
