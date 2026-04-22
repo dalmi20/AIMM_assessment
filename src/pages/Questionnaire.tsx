@@ -111,11 +111,13 @@ export default function Questionnaire() {
       { term: 'Plan de continuité', definition: 'Procédure garantissant la poursuite des opérations en cas de défaillance majeure.' },
     ],
     'Donnée de processus': [
+      { term: 'Donnée de processus', definition: 'Données échangées lors du fonctionnement du processus collaboratif : bon de livraison (BL), accusé de réception, détail de non-conformité, bon de commande, avis d\'expédition, etc.' },
       { term: 'EDI', definition: 'Échange de Données Informatisé — transfert automatique et structuré de données entre systèmes.' },
       { term: 'API', definition: 'Interface permettant à deux systèmes informatiques d\'échanger des données de manière automatisée.' },
       { term: 'Données opérationnelles', definition: 'Données générées quotidiennement par l\'exécution des processus (commandes, stocks, livraisons).' },
     ],
     'Données de produits': [
+      { term: 'Donnée de produit', definition: 'Informations décrivant un produit tout au long de son cycle de vie : plans, spécifications techniques, nomenclatures, fiches produit, configurations, historique de modifications, etc.' },
       { term: 'Référentiel produit', definition: 'Base de données centralisée contenant toutes les informations techniques et commerciales des produits.' },
       { term: 'Données techniques', definition: 'Informations relatives aux caractéristiques, spécifications et configurations des produits.' },
     ],

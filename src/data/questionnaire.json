@@ -43,7 +43,7 @@
   },
   {
     "dimension": "Contrat de partenariat",
-    "indicator": "% SLA partagés et respectés",
+    "indicator": "% engagements respectés",
     "question": "Les engagements définis dans le contrat sont-ils respectés ?",
     "options": [
       "Rarement",
@@ -196,7 +196,7 @@
   {
     "dimension": "Culture et valeurs Organisationnels",
     "indicator": "Nb actions de promotion culture commune / an",
-    "question": "Des actions sont-elles menées pour améliorer la collaboration ?",
+    "question": "Des actions sont-elles menées pour améliorer la collaboration \n (ex. : afterworks, événements communs)?",
     "options": [
       "Aucune (0)",
       "Occasionnellement (1-2/an)",
@@ -211,7 +211,7 @@
   {
     "dimension": "Culture et valeurs Organisationnels",
     "indicator": "Taux de conflits culturels signalés",
-    "question": "Rencontrez-vous des conflits liés aux différences de culture ?",
+    "question": "Rencontrez-vous des conflits liés aux différences de culture entre vous et {PARTNER} ?",
     "options": [
       "Très souvent (>5 fois/trimestre)",
       "Souvent (3-5 fois/trimestre)",
@@ -227,7 +227,7 @@
   {
     "dimension": "Compétences",
     "indicator": "% compétences clés identifiées / cartographiées",
-    "question": "Les compétences clés nécessaires à la collaboration sont-elles identifiées ?",
+    "question": "Les compétences clés nécessaires à le bon fonctionnement de la collaboration sont-elles identifiées ?",
     "options": [
       "Non identifiées",
       "Oui, identifiées",
@@ -315,7 +315,7 @@
   {
     "dimension": "Rôles et responsabilités",
     "indicator": "% collaborateurs sachant « qui fait quoi » chez le partenaire",
-    "question": "Les équipes savent-elles clairement qui fait quoi chez {PARTNER} ?",
+    "question": "Est-ce que vous comprenez clairement qui fait quoi chez {PARTNER}?",
     "options": [
       "Je ne sais pas qui fait quoi chez {PARTNER}",
       "J’ai une connaissance très limitée de ces rôles",
