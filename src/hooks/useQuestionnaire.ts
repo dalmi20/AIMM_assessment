@@ -54,24 +54,8 @@ export function useQuestionnaire() {
     return Array.from(uniqueRoles).sort();
   }, []);
 
-  // Dimensions exclues selon le titre du poste
-  const EXCLUDED_DIMENSIONS_BY_TITLE: { pattern: RegExp; dimensions: string[] }[] = [
-    {
-      pattern: /logistique|supply.?chain/i,
-      dimensions: ['Marché/technologie', 'Coûts / Finances'],
-    },
-  ];
-
-  const excludedDimensions = useMemo(() => {
-    const title = userInfo.jobTitle || '';
-    const excluded = new Set<string>();
-    for (const rule of EXCLUDED_DIMENSIONS_BY_TITLE) {
-      if (rule.pattern.test(title)) {
-        rule.dimensions.forEach(d => excluded.add(d));
-      }
-    }
-    return excluded;
-  }, [userInfo.jobTitle]);
+  // Dimensions masquées pour tout le monde
+  const GLOBALLY_EXCLUDED_DIMENSIONS = new Set(['Marché/technologie', 'Coûts / Finances']);
 
   // Filter questions based on selected role and excluded dimensions
   const filteredQuestions = useMemo(() => {
@@ -80,9 +64,9 @@ export function useQuestionnaire() {
       (q: Question) =>
         (q.role === selectedRole ||
           q.role === 'Tous les acteurs impliqués dans la collaboration') &&
-        !excludedDimensions.has(q.dimension)
+        !GLOBALLY_EXCLUDED_DIMENSIONS.has(q.dimension)
     );
-  }, [selectedRole, excludedDimensions]);
+  }, [selectedRole]);
 
   // Get unique dimensions from filtered questions
   const dimensions = useMemo(() => {
