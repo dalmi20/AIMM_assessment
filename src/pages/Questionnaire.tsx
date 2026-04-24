@@ -427,11 +427,17 @@ export default function Questionnaire() {
               const firstAnsweredOption = firstAnswer?.selectedOption;
               const isCultureDimension = currentDimensionName === 'Culture et valeurs Organisationnels';
               const isSkipExemptDimension = currentDimensionName === 'Définition des processus métiers';
+              const HORS_PERIMETRE_SKIP_DIMS = ['Contrat de partenariat', 'Données de produits'];
+              const isHorsPerimetreSkipDimension = HORS_PERIMETRE_SKIP_DIMS.includes(currentDimensionName);
               const isFirstOptionSelected = firstAnsweredOption === 0;
+              const isHorsPerimetreSelected = firstQuestion !== undefined && firstAnsweredOption === firstQuestion.options.length - 1;
               const remainingQuestions = currentDimensionQuestions.slice(1).filter(q => !q.skipExempt);
 
-              // Pour les dimensions non-Culture et non-exemptées : cacher les questions si option 0 (sauf skipExempt)
-              const visibleQuestions = (!isCultureDimension && !isSkipExemptDimension && isFirstOptionSelected)
+              const shouldHideRemaining =
+                (!isCultureDimension && !isSkipExemptDimension && isFirstOptionSelected) ||
+                (isHorsPerimetreSkipDimension && isHorsPerimetreSelected);
+
+              const visibleQuestions = shouldHideRemaining
                 ? [firstQuestion, ...currentDimensionQuestions.slice(1).filter(q => q.skipExempt)]
                 : currentDimensionQuestions;
 
@@ -473,11 +479,22 @@ export default function Questionnaire() {
                           );
                           setNavigationError('');
 
-                          // Skip logic pour dimensions non-Culture et non-exemptées
+                          // Skip logic général (option 0 sur Q1)
                           if (index === 0 && !isCultureDimension && !isSkipExemptDimension) {
                             if (optionIndex === 0) {
                               remainingQuestions.forEach((q) => {
                                 answerQuestion(q.dimension, q.indicator, q.question, 0, q.options[0]);
+                              });
+                            } else if (!isHorsPerimetreSkipDimension) {
+                              removeAnswersForQuestions(remainingQuestions);
+                            }
+                          }
+                          // Skip logic "Hors de mon périmètre" sur Q1
+                          if (index === 0 && isHorsPerimetreSkipDimension) {
+                            const lastOptionIndex = question.options.length - 1;
+                            if (optionIndex === lastOptionIndex) {
+                              remainingQuestions.forEach((q) => {
+                                answerQuestion(q.dimension, q.indicator, q.question, q.options.length - 1, q.options[q.options.length - 1]);
                               });
                             } else {
                               removeAnswersForQuestions(remainingQuestions);
