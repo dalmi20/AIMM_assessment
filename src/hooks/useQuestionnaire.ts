@@ -55,7 +55,7 @@ export function useQuestionnaire() {
   }, []);
 
   // Dimensions masquées pour tout le monde
-  const GLOBALLY_EXCLUDED_DIMENSIONS = new Set(['Marché/technologie', 'Coûts / Finances']);
+  const GLOBALLY_EXCLUDED_DIMENSIONS = new Set(['Marché/technologie', 'Coûts / Finances', 'Données de produits']);
 
   // Filter questions based on selected role and excluded dimensions
   const filteredQuestions = useMemo(() => {
