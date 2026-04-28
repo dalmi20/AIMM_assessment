@@ -239,7 +239,7 @@ export function RoleSelector({
               setSelectedJobTitle(title);
               onUpdateUserInfo({ ...userInfo, jobTitle: title });
               setErrors((err) => ({ ...err, jobTitle: '' }));
-              const isStrategique = /^(responsable|chef|directeur|manager)/i.test(title);
+              const isStrategique = /^(responsable|chef|direct|manager)/i.test(title);
               onSelectRole(isStrategique
                 ? 'Stratégique: un responsable de service, chef de projet'
                 : 'Tous les acteurs impliqués dans la collaboration');
@@ -290,7 +290,7 @@ export function RoleSelector({
                     disabled={!customJobTitle.trim()}
                     onClick={() => {
                       const trimmed = customJobTitle.trim();
-                      const isStrategique = /^(responsable|chef|directeur|manager)/i.test(trimmed);
+                      const isStrategique = /^(responsable|chef|direct|manager)/i.test(trimmed);
                       const newJob: JobTitle = {
                         title: trimmed,
                         company: userInfo.company!,
