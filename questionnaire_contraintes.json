@@ -1,0 +1,733 @@
+{
+  "meta": {
+    "titre": "AIMM Assessment — Questionnaire Grille de Maturité Logistique",
+    "entreprises": ["Prodeval", "Aventech"],
+    "total_questions_json": 65,
+    "total_questions_affichees_max": 55,
+    "date_export": "2026-04-28"
+  },
+
+  "regles_globales": {
+    "placeholder_partenaire": {
+      "description": "Le mot {PARTNER} dans les questions et options est remplacé dynamiquement à l'affichage",
+      "logique": "Si l'utilisateur travaille chez Prodeval → {PARTNER} = AVENTECH. Si Aventech → {PARTNER} = PRODEVAL",
+      "champs_concernes": ["question", "options"]
+    },
+    "option_hors_perimetre": {
+      "description": "Toutes les questions ont une dernière option 'Hors de mon périmètre'",
+      "position": "Toujours la dernière option"
+    },
+    "dimensions_masquees_tous_roles": {
+      "description": "Ces dimensions ne sont JAMAIS affichées, quel que soit le rôle",
+      "dimensions": [
+        "Marché/technologie",
+        "Coûts / Finances",
+        "Données de produits"
+      ]
+    }
+  },
+
+  "roles": {
+    "description": "Le rôle est déterminé automatiquement selon le titre du poste saisi ou sélectionné",
+    "detection_automatique": {
+      "regle": "Si le titre commence par responsable, chef, direct (directeur/directrice), manager → Stratégique. Sinon → Opérationnel",
+      "regex": "^(responsable|chef|direct|manager)",
+      "insensible_casse": true
+    },
+    "strategique": {
+      "valeur": "Stratégique: un responsable de service, chef de projet",
+      "questions_vues": "Questions avec role='Stratégique...' + Questions avec role='Tous les acteurs...'",
+      "nombre_questions": "26 stratégiques + 39 tous = 65 (avant exclusion des dimensions masquées)"
+    },
+    "operationnel": {
+      "valeur": "Tous les acteurs impliqués dans la collaboration",
+      "questions_vues": "Uniquement les questions avec role='Tous les acteurs...'",
+      "nombre_questions": "39 (avant exclusion des dimensions masquées)"
+    }
+  },
+
+  "logique_skip_par_dimension": {
+    "description": "Comportement lorsqu'une réponse à Q1 déclenche le masquage des autres questions",
+
+    "comportement_defaut": {
+      "declencheur": "Q1 = option index 0 (première option)",
+      "effet": "Toutes les questions suivantes sont masquées et auto-répondues avec option index 0",
+      "exceptions": "Questions marquées skipExempt=true restent toujours visibles",
+      "si_autre_reponse": "Les questions redeviennent visibles et les auto-réponses sont supprimées",
+      "dimensions_concernees": "Toutes sauf : Culture et valeurs Organisationnels, Définition des processus métiers"
+    },
+
+    "exceptions_comportement_defaut": [
+      {
+        "dimension": "Culture et valeurs Organisationnels",
+        "regle": "Aucun skip — toutes les questions sont TOUJOURS visibles quelle que soit la réponse à Q1"
+      },
+      {
+        "dimension": "Définition des processus métiers",
+        "regle": "Aucun skip — toutes les questions sont TOUJOURS visibles quelle que soit la réponse à Q1"
+      }
+    ],
+
+    "skip_hors_perimetre": {
+      "description": "En PLUS du comportement défaut, si Q1 = 'Hors de mon périmètre' (dernière option) → masquage",
+      "declencheur": "Q1 = dernière option (Hors de mon périmètre)",
+      "effet": "Toutes les questions suivantes masquées et auto-répondues avec 'Hors de mon périmètre'",
+      "dimensions_concernees": [
+        "Contrat de partenariat",
+        "Données de produits"
+      ]
+    }
+  },
+
+  "dimensions": [
+    {
+      "nom": "Contrat de partenariat",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Stratégique uniquement"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "skip_hors_perimetre": true,
+        "note": "Q1 réponse 0 OU Q1 = Hors de mon périmètre → questions 2-6 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Existence d'une contrat formalisé",
+          "question": "Existe-t-il un contrat écrite entre les deux entreprises qui définit les responsabilités de chacune d'elle dans le processus de la logistique ?",
+          "options_count": 5,
+          "role": "Stratégique",
+          "declencheur_skip": "option 0 (Non, aucune contrat) OU option 4 (Hors de mon périmètre)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Accords documentés et accessibles",
+          "question": "Ce contrat est-il facile à consulter ?",
+          "options_count": 5,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "% activités couverts par les accords",
+          "question": "Quelle part des activités logistiques est couverte par ce contrat ?",
+          "options_count": 5,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "% engagements respectés",
+          "question": "Les engagements définis dans le contrat sont-ils respectés ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 5,
+          "indicateur": "Incidents liés à incompréhensions / mois",
+          "question": "Y a-t-il des problèmes liés à une mauvaise compréhension du contrat ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 6,
+          "indicateur": "Existence & fréquence de revue/mise à jour",
+          "question": "Les accords inclus dans le contrat sont-ils revus et mis à jour ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Marché/technologie",
+      "statut": "MASQUÉE — jamais affichée",
+      "raison": "Dimension globalement exclue pour tous les rôles",
+      "questions_count": 3
+    },
+
+    {
+      "nom": "Coûts / Finances",
+      "statut": "MASQUÉE — jamais affichée",
+      "raison": "Dimension globalement exclue pour tous les rôles",
+      "questions_count": 3
+    },
+
+    {
+      "nom": "Culture et valeurs Organisationnels",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous (stratégique et opérationnel)"],
+      "skip_logique": {
+        "comportement_defaut": false,
+        "note": "EXCEPTION — aucun masquage quelle que soit la réponse à Q1. Toutes les questions toujours visibles."
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "% collaborateurs déclarant valeurs claires/partagées",
+          "question": "Les méthodes de travail et les valeurs de {PARTNER} sont-elles claires pour vous ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Tous"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Nb actions de promotion culture commune / an",
+          "question": "Des actions sont-elles menées pour améliorer la collaboration (ex. : afterworks, événements communs) ?",
+          "options_count": 6,
+          "role": "Tous"
+        },
+        {
+          "numero": 3,
+          "indicateur": "Taux de conflits culturels signalés",
+          "question": "Rencontrez-vous des conflits liés aux différences de culture entre vous et {PARTNER} ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Stratégique uniquement"
+        }
+      ]
+    },
+
+    {
+      "nom": "Compétences",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Stratégique uniquement"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2 masquée et auto-répondue"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "% compétences clés identifiées / cartographiées",
+          "question": "Les compétences clés nécessaires au bon fonctionnement de la collaboration sont-elles identifiées ?",
+          "options_count": 4,
+          "role": "Stratégique",
+          "declencheur_skip": "option 0 (Non identifiées)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Nb formations conjointes / an",
+          "question": "Des formations communes avec {PARTNER} sont-elles organisées ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Engagement",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Stratégique uniquement"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Taux de participation aux réunions / ateliers",
+          "question": "Les partenaires participent-ils activement aux réunions et ateliers ?",
+          "options_count": 5,
+          "role": "Stratégique",
+          "declencheur_skip": "option 0 (Rarement)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "% actions conjointes réalisées dans les délais",
+          "question": "Les actions menées ensemble sont-elles réalisées dans les délais ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Stabilité des équipes dédiées (turnover)",
+          "question": "Les équipes dédiées à la collaboration sont-elles stables ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Satisfaction des partenaires sur l'implication",
+          "question": "Êtes-vous satisfait de l'implication de {PARTNER} dans la réalisation des objectifs de collaboration ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Rôles et responsabilités",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous pour Q1-Q3", "Stratégique pour Q4"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q4 masquées (Q3 toujours visible car skipExempt ou logique spéciale)"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "% collaborateurs sachant qui fait quoi chez le partenaire",
+          "question": "Est-ce que vous comprenez clairement qui fait quoi chez {PARTNER} ?",
+          "placeholder": "{PARTNER} dans question ET dans options",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Je ne sais pas qui fait quoi chez {PARTNER})"
+        },
+        {
+          "numero": 2,
+          "indicateur": "% rôles formalisés (RACI/organigramme)",
+          "question": "Les rôles entre votre entreprise et {PARTNER} sont-ils clairement formalisés ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Nb chevauchements / zones grises / an",
+          "question": "Y a-t-il des chevauchements ou des zones floues dans les responsabilités entre les deux entreprises ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Mise à jour formelle des responsabilités",
+          "question": "Les rôles et responsabilités sont-ils mis à jour si des personnes changent ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Définition des processus métiers",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": false,
+        "note": "EXCEPTION — aucun masquage. Toutes les questions toujours visibles quelle que soit la réponse à Q1."
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Existence d'un référentiel partagé des processus",
+          "question": "Existe-t-il un document commun décrivant le processus de logistique collaborative ?",
+          "options_count": 6,
+          "role": "Tous"
+        },
+        {
+          "numero": 2,
+          "indicateur": "% points de coordination identifiées",
+          "question": "Les étapes où les deux entreprises interagissent sont-elles identifiées ?",
+          "options_count": 6,
+          "role": "Tous"
+        },
+        {
+          "numero": 3,
+          "indicateur": "% points de coordination avec entrées/sorties définies",
+          "question": "Les informations à échanger dans ces points de coordination sont-elles définies ?",
+          "options_count": 6,
+          "role": "Tous"
+        },
+        {
+          "numero": 4,
+          "indicateur": "Délai de mise à jour après changement",
+          "question": "Les processus sont-ils mis à jour lorsqu'un changement survient ?",
+          "options_count": 6,
+          "role": "Tous"
+        }
+      ]
+    },
+
+    {
+      "nom": "Exécution des processus métiers",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "% d'activités exécutées selon le planning convenu",
+          "question": "Les activités sont-elles réalisées selon le planning prévu ?",
+          "options_count": 5,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Rarement)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Fréquence des désynchronisations",
+          "question": "Y a-t-il des problèmes de coordination ou des retards ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Fluidité des interactions",
+          "question": "Faut-il beaucoup d'itérations pour finaliser une tâche qui implique les deux entreprises ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Temps de réaction aux écarts",
+          "question": "En cas de problème, quel est le temps de réaction ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Pilotage des processus métiers",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Stratégique uniquement"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4, Q6 masquées. Q5 toujours visible (skipExempt ou logique spéciale)"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Nombre de KPIs communs définis",
+          "question": "Existe-t-il des indicateurs communs pour suivre le processus de la logistique ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "declencheur_skip": "option 0 (Aucun)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "% points de coordination couverts par indicateur",
+          "question": "Les échanges clés sont-ils suivis avec des indicateurs ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "% KPI suivis",
+          "question": "Les indicateurs sont-ils mis à jour régulièrement ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Fréquence de revues conjointes",
+          "question": "La performance du processus est-elle revue ensemble avec {PARTNER} ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        },
+        {
+          "numero": 5,
+          "indicateur": "Présence d'outils / méthodes prédictives",
+          "question": "Utilisez-vous des outils pour anticiper les dérives ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true,
+          "skipNextIf": {
+            "description": "Si réponse = option 0 (Aucun outil) OU option 1 (Outils simples Excel) → Q6 masquée et auto-répondue",
+            "valeurs_declencheurs": [0, 1]
+          }
+        },
+        {
+          "numero": 6,
+          "indicateur": "Capacité d'anticipation",
+          "question": "Les problèmes sont-ils détectés avant d'avoir un impact négatif ?",
+          "options_count": 6,
+          "role": "Stratégique",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Transparence des processus métiers",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Taux de visibilité partagée",
+          "question": "Avez-vous une vision de l'avancement des activités réalisées par {PARTNER} qui vous concernent ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Très peu)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Couverture des décisions clés",
+          "question": "Les décisions importantes sont-elles partagées dans des délais appropriés ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Profondeur de traçabilité",
+          "question": "Est-il facile de retrouver l'historique et les causes d'un problème ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Gestion des incidents et risques",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q3, Q4 masquées. Q2 toujours visible (skipExempt)"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "% incidents gérés conjointement",
+          "question": "Les incidents sont-ils gérés conjointement ?",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Jamais)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Temps de réaction aux incidents",
+          "question": "Temps de réaction aux ces incidents",
+          "options_count": 5,
+          "role": "Tous",
+          "skipExempt": true,
+          "note": "TOUJOURS visible même si Q1 = option 0"
+        },
+        {
+          "numero": 3,
+          "indicateur": "Taux d'anticipation des risques",
+          "question": "Est-ce qu'il vous arrive de détecter un problème avant qu'il ne se produise ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Taux d'amélioration post-incident",
+          "question": "Les incidents servent-ils à améliorer les processus ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Donnée de processus",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4, Q5 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Mode de partage",
+          "question": "Comment partagez-vous les données nécessaires dans le processus collaboratif de la logistique ?",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Informel / verbal)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Taux de complétude des données",
+          "question": "Les données de processus partagées sont-elles complètes ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Délai de propagation",
+          "question": "Quel est le délai de propagation des données chez {PARTNER} ?",
+          "placeholder": "{PARTNER} remplacé dynamiquement",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Formats d'échange convenus",
+          "question": "Avez-vous défini des formats communs pour échanger les données ?",
+          "options_count": 5,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 5,
+          "indicateur": "Taux d'erreurs de synchronisation",
+          "question": "Y a-t-il des erreurs ou incohérences dans les données échangées ?",
+          "options_count": 5,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Données de produits",
+      "statut": "MASQUÉE — jamais affichée",
+      "raison": "Dimension globalement exclue pour tous les rôles",
+      "questions_count": 5
+    },
+
+    {
+      "nom": "Ingénierie des connaissances",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Taux de formalisation",
+          "question": "Les connaissances clés pour la collaboration sont-elles documentées ?",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Non documentées)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Niveau de structuration",
+          "question": "Comment sont organisées ces connaissances ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Existence d'un langage commun",
+          "question": "Existe-t-il un vocabulaire ou glossaire commun entre partenaires ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Taux de réutilisation",
+          "question": "Les connaissances documentées sont-elles réutilisées ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    },
+
+    {
+      "nom": "Gestion des connaissances",
+      "statut": "ACTIVE",
+      "roles_concernes": ["Tous"],
+      "skip_logique": {
+        "comportement_defaut": true,
+        "note": "Q1 option 0 → Q2, Q3, Q4, Q5 masquées"
+      },
+      "questions": [
+        {
+          "numero": 1,
+          "indicateur": "Taux de perte de savoir",
+          "question": "Perdez-vous des connaissances importantes (départs, turnover) ?",
+          "options_count": 6,
+          "role": "Tous",
+          "declencheur_skip": "option 0 (Très souvent)"
+        },
+        {
+          "numero": 2,
+          "indicateur": "Existence d'espaces de stockage",
+          "question": "Existe-t-il un espace commun pour stocker les connaissances ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 3,
+          "indicateur": "Taux d'alimentation (fréquence d'ajout)",
+          "question": "De nouvelles connaissances sont-elles ajoutées régulièrement ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 4,
+          "indicateur": "Indice d'apprentissage continu",
+          "question": "La capitalisation des connaissances permet-elle des améliorations concrètes ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        },
+        {
+          "numero": 5,
+          "indicateur": "Intégration au quotidien",
+          "question": "Les connaissances capitalisées sont-elles utilisées au quotidien ?",
+          "options_count": 6,
+          "role": "Tous",
+          "masquable": true
+        }
+      ]
+    }
+  ],
+
+  "postes_strategiques_predefinies": [
+    { "titre": "Chef de projet", "entreprise": "Aventech" },
+    { "titre": "Chef de projet", "entreprise": "Prodeval" },
+    { "titre": "Responsable d'achat", "entreprise": "Prodeval" },
+    { "titre": "Responsable d'achat", "entreprise": "Aventech" },
+    { "titre": "Responsable de contrôle opérationnel", "entreprise": "Aventech" },
+    { "titre": "Responsable de contrôle opérationnel", "entreprise": "Prodeval" },
+    { "titre": "Responsable Moyens & Outillages - Qualité & Sécurité", "entreprise": "Aventech" }
+  ],
+
+  "postes_operationnels_predefinies": [
+    { "titre": "Chargé d'affaire", "entreprise": "Prodeval" },
+    { "titre": "Chargé d'affaire (binôme)", "entreprise": "Aventech" },
+    { "titre": "Contrôleur FAT Élec", "entreprise": "Prodeval" },
+    { "titre": "Contrôleur FAT Méca", "entreprise": "Prodeval" },
+    { "titre": "Contrôleur Méca", "entreprise": "Aventech" },
+    { "titre": "Approvisionneur", "entreprise": "Prodeval" },
+    { "titre": "Planificateur", "entreprise": "Prodeval" },
+    { "titre": "Assistant de chargé d'affaire (binôme côté production)", "entreprise": "Aventech" },
+    { "titre": "Agent de logistique", "entreprise": "Aventech" },
+    { "titre": "Assistant de responsable production (ARP)", "entreprise": "Aventech" }
+  ],
+
+  "soumission": {
+    "declencheur": "Questionnaire 100% complété",
+    "actions": [
+      "Génération d'un fichier PDF téléchargé localement",
+      "Upload automatique du fichier JSON dans le Google Drive partagé (via Google Apps Script, sans authentification utilisateur)",
+      "Bouton 'Soumettre' affiché dans un encadré vert avec message 'Merci pour votre contribution'"
+    ],
+    "nom_fichier_json": "questionnaire-{NOM}_{PRENOM}-{DATE}.json"
+  }
+}

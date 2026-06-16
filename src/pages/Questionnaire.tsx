@@ -426,7 +426,8 @@ export default function Questionnaire() {
                 : undefined;
               const firstAnsweredOption = firstAnswer?.selectedOption;
               const isCultureDimension = currentDimensionName === 'Culture et valeurs Organisationnels';
-              const isSkipExemptDimension = currentDimensionName === 'Définition des processus métiers';
+              const NO_SKIP_DIMENSIONS = ['Définition des processus métiers', 'Compétences', 'Engagement'];
+              const isSkipExemptDimension = NO_SKIP_DIMENSIONS.includes(currentDimensionName);
               const HORS_PERIMETRE_SKIP_DIMS = ['Contrat de partenariat', 'Données de produits'];
               const isHorsPerimetreSkipDimension = HORS_PERIMETRE_SKIP_DIMS.includes(currentDimensionName);
               const isFirstOptionSelected = firstAnsweredOption === 0;
@@ -517,6 +518,12 @@ export default function Questionnaire() {
                             if (index < visibleQuestions.length - 1) {
                               setActiveQuestionIndex(index + 1);
                             }
+                            // Auto-submit quand la dernière question du dernier attribut est répondue
+                            const isLastDimension = currentDimensionIndex === dimensions.length - 1;
+                            const isLastQuestion = index === visibleQuestions.length - 1;
+                            if (isLastDimension && isLastQuestion && sendStatus === 'idle' && !isSending) {
+                              handleSendByEmail();
+                            }
                           }, 300);
                         }}
                       />
@@ -572,26 +579,38 @@ export default function Questionnaire() {
                 <h3 className="text-lg font-semibold text-emerald-900 mb-2">
                   ✓ Questionnaire complété !
                 </h3>
-                <p className="text-emerald-800 mb-2">
+                <p className="text-emerald-800 mb-4">
                   Merci pour votre contribution.
                 </p>
-                <p className="text-emerald-700 text-sm mb-4">
-                  Cliquez sur Soumettre pour envoyer vos réponses.
-                </p>
-                <Button
-                  onClick={handleSendByEmail}
-                  disabled={isSending}
-                  className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
-                  size="lg"
-                >
-                  <Mail className="w-5 h-5" />
-                  {isSending ? 'Envoi en cours...' : 'Soumettre'}
-                </Button>
+
+                {/* Pendant l'envoi automatique */}
+                {isSending && (
+                  <div className="flex items-center justify-center gap-2 py-3 text-emerald-700 text-sm">
+                    <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                    </svg>
+                    Enregistrement en cours...
+                  </div>
+                )}
+
+                {/* Bouton affiché après l'exécution automatique */}
+                {!isSending && (
+                  <Button
+                    onClick={handleSendByEmail}
+                    className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                    size="lg"
+                  >
+                    <Mail className="w-5 h-5" />
+                    Soumettre
+                  </Button>
+                )}
+
                 {sendStatus === 'success' && (
-                  <p className="text-sm text-emerald-700 text-center mt-2">✓ Réponses envoyées avec succès !</p>
+                  <p className="text-sm text-emerald-700 text-center mt-3">✓ Réponses enregistrées avec succès !</p>
                 )}
                 {sendStatus === 'error' && (
-                  <p className="text-sm text-red-600 text-center mt-2">Une erreur est survenue. Veuillez réessayer.</p>
+                  <p className="text-sm text-red-600 text-center mt-3">Une erreur est survenue. Veuillez réessayer.</p>
                 )}
               </Card>
             )}
