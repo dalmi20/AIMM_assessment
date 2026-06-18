@@ -583,28 +583,15 @@ export default function Questionnaire() {
                   Merci pour votre contribution.
                 </p>
 
-                {/* Pendant l'envoi automatique */}
-                {isSending && (
-                  <div className="flex items-center justify-center gap-2 py-3 text-emerald-700 text-sm">
-                    <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
-                    </svg>
-                    Enregistrement en cours...
-                  </div>
-                )}
-
-                {/* Bouton affiché après l'exécution automatique */}
-                {!isSending && (
-                  <Button
-                    onClick={handleSendByEmail}
-                    className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
-                    size="lg"
-                  >
-                    <Mail className="w-5 h-5" />
-                    Soumettre
-                  </Button>
-                )}
+                <Button
+                  onClick={handleSendByEmail}
+                  disabled={isSending}
+                  className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                  size="lg"
+                >
+                  <Mail className="w-5 h-5" />
+                  {isSending ? 'Envoi en cours...' : 'Soumettre'}
+                </Button>
 
                 {sendStatus === 'success' && (
                   <p className="text-sm text-emerald-700 text-center mt-3">✓ Réponses enregistrées avec succès !</p>

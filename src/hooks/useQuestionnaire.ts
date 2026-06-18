@@ -59,15 +59,6 @@ export function useQuestionnaire() {
     'Marché/technologie',
     'Coûts / Finances',
     'Données de produits',
-    'Culture et valeurs Organisationnels',
-    'Rôles et responsabilités',
-    'Définition des processus métiers',
-    'Exécution des processus métiers',
-    'Transparence des processus métiers',
-    'Gestion des incidents et risques',
-    'Donnée de processus',
-    'Ingénierie des connaissances',
-    'Gestion des connaissances',
   ]);
 
   // Filter questions based on selected role and excluded dimensions
